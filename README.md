@@ -48,6 +48,11 @@ Of course, you can also choose what you want to donate, all donations are awesom
 
 ##USAGE
 
+###N.B
+
+###This version is just a pre-relase to allow everyone to try it and report any bugs, so it support grid size 4x5 (Column x Row), in future versions there will be other dimensions!!
+
+
 Add this to `build.gradle`
 
 ```groovy
