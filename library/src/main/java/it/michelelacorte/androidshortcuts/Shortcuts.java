@@ -41,7 +41,11 @@ public class Shortcuts {
         }else{
             this.shortcutsText = shortcutsText;
         }
-        this.onShortcutsClickListener = onShortcutsClickListener;
+        if(onShortcutsClickListener != null) {
+            this.onShortcutsClickListener = onShortcutsClickListener;
+        }else{
+            Log.e(TAG, "OnClickListener must be different from NULL");
+        }
     }
 
     /**

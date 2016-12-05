@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 1
-        versionName "0.1.0"
+        versionCode 2
+        versionName "0.2.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -31,4 +31,5 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.0.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.google.code.gson:gson:2.8.0'
 }

@@ -4,24 +4,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import it.michelelacorte.androidshortcuts.Shortcuts;
 import it.michelelacorte.androidshortcuts.ShortcutsCreation;
@@ -37,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         activityParent = (RelativeLayout) findViewById(R.id.activity_main);
-        gridView=(GridView) findViewById(R.id.gridView);
-        gridView.setAdapter(new MyArrayAdapter(this, R.layout.app_grid_item));
+
+        gridView= (GridView) findViewById(R.id.gridView);
+        gridView.setAdapter(new ExampleArrayAdapter(this, R.layout.app_grid_item));
 
         //Create shortcuts
         final ShortcutsCreation shortcutsCreation = new ShortcutsCreation(MainActivity.this, activityParent, gridView);
@@ -72,14 +67,14 @@ public class MainActivity extends AppCompatActivity {
             public void onLongPress(MotionEvent motionEvent) {
                 shortcutsCreation.clearAllLayout();
                 //Now create shortcuts!
-                shortcutsCreation.createShortcuts((int)motionEvent.getX(), (int)motionEvent.getY(),
+                shortcutsCreation.createShortcuts((int)motionEvent.getX(), (int)motionEvent.getY(), 96,
                         new Shortcuts(R.mipmap.ic_launcher, "Shortcuts", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 Toast.makeText(getApplicationContext(), "Hello Shortcuts!!", Toast.LENGTH_LONG).show();
                             }
                         }),
-                        new Shortcuts(R.mipmap.ic_launcher, "Hello!"));
+                        new Shortcuts(R.mipmap.ic_launcher, "Nougat!"));
             }
 
             @Override
@@ -99,13 +94,13 @@ public class MainActivity extends AppCompatActivity {
 }
 
 
-class MyArrayAdapter extends BaseAdapter {
+class ExampleArrayAdapter extends BaseAdapter {
 
 
     private Activity activity;
     private int layoutResourceId;
 
-    public MyArrayAdapter(Activity activity, int layoutResourceId) {
+    public ExampleArrayAdapter(Activity activity, int layoutResourceId) {
         this.activity = activity;
         this.layoutResourceId = layoutResourceId;
     }

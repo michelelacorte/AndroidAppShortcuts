@@ -19,12 +19,22 @@ android {
     }
 }
 
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.google.code.gson:gson:2.8.0'
     testCompile 'junit:junit:4.12'
     compile project(':library')
+    //compile 'com.github.michelelacorte:AndroidShortcuts:0.1.0'
 }

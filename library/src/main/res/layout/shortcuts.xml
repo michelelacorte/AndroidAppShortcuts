@@ -7,13 +7,13 @@
     android:elevation="20dp"
     android:clickable="true"
     android:backgroundTint="@android:color/white"
-    style="?attr/selectableItemBackground">
+    style="?android:attr/selectableItemBackground">
 
     <View android:layout_width="30dp"
         android:layout_height="35dp"
         android:background="@drawable/circle"
         android:layout_gravity="start|center_vertical"
-        android:layout_centerVertical="true"/>
+        android:layout_centerVertical="true" />
 
     <ImageView
         android:layout_marginStart="5dp"
