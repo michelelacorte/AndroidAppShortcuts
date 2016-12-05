@@ -29,7 +29,7 @@ This project needs you! If you would like to support this project's further deve
 Of course, you can also choose what you want to donate, all donations are awesome!!
 
 <img align="left" src="https://s15.postimg.org/km4eygofv/ic_launcher.png">
-#v0.1.0 (Coming Soon)
+#v0.1.0
 
 ###Here we are!
 ###The touch force is ready and is going to get on the custom launcher !!
@@ -158,7 +158,7 @@ Android API 14+
 
 ##CHANGELOG
 
-**v0.1.0 (Coming Soon!)**
+**v0.1.0**
 - Support API 14+ (API 25 Compatible)
 - Added params `ShorcutsCreation` class for initialize `gridView` and `parentLayout`
 - Added `Shortcuts` class for create your custom shortcuts!!
