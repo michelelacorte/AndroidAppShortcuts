@@ -159,9 +159,21 @@ Android API 14+
 ##CHANGELOG
 
 **v0.1.0**
-- Support API 14+ (API 25 Compatible)
-- Added params `ShorcutsCreation` class for initialize `gridView` and `parentLayout`
-- Added `Shortcuts` class for create your custom shortcuts!!
+* Support API 14+ (API 25 Compatible)
+* Added params `ShorcutsCreation` class for initialize `gridView` and `parentLayout`
+   * Public constructor `ShortcutsCreation(Activity activity, ViewGroup masterLayout, AdapterView gridView)`
+   * Public method to create shortctus `void createShortcuts(int currentXPosition, int currentYPosition, Shortcuts... shortcuts) `
+   * Public method to clear layout `void clearAllLayout()`
+   * Private method `int getToolbarHeight(Context context)`
+   * Private method `void getScreenDimension()`
+   * Private method `int getPositionInGrid(int currentXPosition, int currentYPosition, AdapterView gridView)` 
+* Added `Shortcuts` class for create your custom shortcuts!!
+   * Public constructor with params `Shortcuts(int shortcutsImage, String shortcutsText, View.OnClickListener onShortcutsClickListener)`
+   * Public constructor with params `Shortcuts(int shortcutsImage, String shortcutsText)`
+   * Public method `void init(View layout)` do not use this, it's just to initialize shortcuts in `ShortcutsCreation` class  
+* Added `ResizeAnimation` class to make transition
+   * Public constructor ` ResizeAnimation(View v, float fromWidth, float fromHeight, float toWidth, float toHeight)` 
+   * Protected method `applyTransformation(float interpolatedTime, Transformation t)`
 
 ##CREDITS
 
