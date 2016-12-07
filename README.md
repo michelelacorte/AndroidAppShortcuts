@@ -158,7 +158,7 @@ Android API 14+
 
 ##CHANGELOG
 
-**v0.2.0**
+**v0.2.0 (Coming Soon!)**
 * Improved Animation enter/exit on Shortcuts
 * Deleted `ResizeAnimation` class
 
