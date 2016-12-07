@@ -158,6 +158,10 @@ Android API 14+
 
 ##CHANGELOG
 
+**v0.2.0**
+* Improved Animation enter/exit on Shortcuts
+* Deleted `ResizeAnimation` class
+
 **v0.1.0**
 * Support API 14+ (API 25 Compatible)
 * Added params `ShorcutsCreation` class for initialize `gridView` and `parentLayout`
@@ -172,7 +176,7 @@ Android API 14+
    * Public constructor with params `Shortcuts(int shortcutsImage, String shortcutsText)`
    * Public method `void init(View layout)` do not use this, it's just to initialize shortcuts in `ShortcutsCreation` class  
 * Added `ResizeAnimation` class to make transition
-   * Public constructor ` ResizeAnimation(View v, float fromWidth, float fromHeight, float toWidth, float toHeight)` 
+   * Public constructor `ResizeAnimation(View v, float fromWidth, float fromHeight, float toWidth, float toHeight)` 
    * Protected method `applyTransformation(float interpolatedTime, Transformation t)`
 
 ##CREDITS
