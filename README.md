@@ -46,6 +46,10 @@ Of course, you can also choose what you want to donate, all donations are awesom
 ###Stay Tuned!
 ###For other detail to use force touch follow [Force Touch](https://github.com/michelelacorte/ForceTouch)
 
+##APP EXAMPLE (v0.2.0 Preview)
+
+<h1 align="center"><img src="http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif"/></h1>
+
 ##USAGE
 
 ###N.B
@@ -159,7 +163,8 @@ Android API 14+
 ##CHANGELOG
 
 **v0.2.0 (Coming Soon!)**
-* Improved Animation enter/exit on Shortcuts
+* Improved Animation enter/exit on Shortcuts (See [Preview](http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif))
+* In Class `ShortcutsCreation` added param `int rowHeight` to constructor
 * Deleted `ResizeAnimation` class
 * Bug fix and code improvement
 
