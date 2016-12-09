@@ -164,6 +164,15 @@ Android API 14+
 
 **v0.2.0 (Coming Soon!)**
 * Improved Animation enter/exit on Shortcuts (See [Preview](http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif))
+* Added class `GridSize`
+    * Public constructor `GridSize(int nColumn, int nRow)`
+    * Public method `SupportedGridSize getGridSize(AdapterView gridView)`
+    * Private method `int getRow()`
+    * Private method `int getColumn()`
+* Added enum `SupportedGridSize`
+    * enum `FOUR_X_FIVE`
+    * enum `FIVE_X_FOUR`
+    * enum `INVALID_GRID_SIZE`
 * In Class `ShortcutsCreation` added param `int rowHeight` to constructor
 * Deleted `ResizeAnimation` class
 * Bug fix and code improvement
