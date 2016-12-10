@@ -29,7 +29,7 @@ This project needs you! If you would like to support this project's further deve
 Of course, you can also choose what you want to donate, all donations are awesome!!
 
 <img align="left" src="https://s15.postimg.org/km4eygofv/ic_launcher.png">
-#v0.1.0 (Coming Soon)
+#v0.1.0
 
 ###Here we are!
 ###The touch force is ready and is going to get on the custom launcher !!
@@ -45,6 +45,10 @@ Of course, you can also choose what you want to donate, all donations are awesom
 
 ###Stay Tuned!
 ###For other detail to use force touch follow [Force Touch](https://github.com/michelelacorte/ForceTouch)
+
+##APP EXAMPLE (v0.2.0 Preview)
+
+<h1 align="center"><img src="http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif"/></h1>
 
 ##USAGE
 
@@ -158,10 +162,39 @@ Android API 14+
 
 ##CHANGELOG
 
-**v0.1.0 (Coming Soon!)**
-- Support API 14+ (API 25 Compatible)
-- Added params `ShorcutsCreation` class for initialize `gridView` and `parentLayout`
-- Added `Shortcuts` class for create your custom shortcuts!!
+**v0.2.0 (Coming Soon!)**
+* Improved Animation enter/exit on Shortcuts (See [Preview](http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif))
+* Update `ShortcutsCreation` class, now support all grid size!! (Tested major grid size 4x5, 4x4, 5x5, 5x4)
+* Added class `Utils`
+    * Public method `GridSize getGridSize(AdapterView gridView)`
+    * Public method `int getToolbarHeight(Activity activity)` moved from `ShortcutsCreation`
+* Added class `GridSize`
+    * Public constructor `GridSize(int nColumn, int nRow)`
+    * Public method `int getRowCount()`
+    * Public method `int getColumnCount()`
+* Update `ShortcutsCreation`, added param `int rowHeight` to constructor
+* Update `ShortcutsCreation` class
+    * Added constructor `ShortcutsCreation(Activity activity, ViewGroup masterLayout, GridView gridView)`
+    * Added private method  boolean `isClickOnItem(int currentXPosition, int currentYPosition, GridSize gridSize)`
+* Deleted `ResizeAnimation` class
+* Bug fix and code improvement
+
+**v0.1.0**
+* Support API 14+ (API 25 Compatible)
+* Added params `ShorcutsCreation` class for initialize `gridView` and `parentLayout`
+   * Public constructor `ShortcutsCreation(Activity activity, ViewGroup masterLayout, AdapterView gridView)`
+   * Public method to create shortctus `void createShortcuts(int currentXPosition, int currentYPosition, Shortcuts... shortcuts) `
+   * Public method to clear layout `void clearAllLayout()`
+   * Private method `int getToolbarHeight(Context context)`
+   * Private method `void getScreenDimension()`
+   * Private method `int getPositionInGrid(int currentXPosition, int currentYPosition, AdapterView gridView)` 
+* Added `Shortcuts` class for create your custom shortcuts!!
+   * Public constructor with params `Shortcuts(int shortcutsImage, String shortcutsText, View.OnClickListener onShortcutsClickListener)`
+   * Public constructor with params `Shortcuts(int shortcutsImage, String shortcutsText)`
+   * Public method `void init(View layout)` do not use this, it's just to initialize shortcuts in `ShortcutsCreation` class  
+* Added `ResizeAnimation` class to make transition
+   * Public constructor `ResizeAnimation(View v, float fromWidth, float fromHeight, float toWidth, float toHeight)` 
+   * Protected method `applyTransformation(float interpolatedTime, Transformation t)`
 
 ##CREDITS
 
