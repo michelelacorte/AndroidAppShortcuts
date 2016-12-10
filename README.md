@@ -29,7 +29,7 @@ This project needs you! If you would like to support this project's further deve
 Of course, you can also choose what you want to donate, all donations are awesome!!
 
 <img align="left" src="https://s15.postimg.org/km4eygofv/ic_launcher.png">
-#v0.1.0
+#v0.2.0
 
 ###Here we are!
 ###The touch force is ready and is going to get on the custom launcher !!
@@ -52,10 +52,6 @@ Of course, you can also choose what you want to donate, all donations are awesom
 
 ##USAGE
 
-###N.B
-
-###This version is just a pre-relase to allow everyone to try it and report any bugs, so it support grid size 4x5 (Column x Row), in future versions there will be other dimensions!!
-
 
 Add this to `build.gradle`
 
@@ -71,7 +67,7 @@ allprojects {
 Than add this dependencies
 
 ```groovy
-compile 'com.github.michelelacorte:AndroidShortcuts:0.1.0'
+compile 'com.github.michelelacorte:AndroidShortcuts:0.2.0'
 ```
 
 Now let's start to create Shortcuts!
@@ -124,7 +120,7 @@ Than in MainActivity
                 shortcutsCreation.clearAllLayout();
                 
                 //Now create shortcuts!!
-                shortcutsCreation.createShortcuts((int)motionEvent.getX(), (int)motionEvent.getY(),
+                shortcutsCreation.createShortcuts((int)motionEvent.getX(), (int)motionEvent.getY(), 96,
                         new Shortcuts(R.mipmap.ic_launcher, "Shortcuts", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -162,9 +158,9 @@ Android API 14+
 
 ##CHANGELOG
 
-**v0.2.0 (Coming Soon!)**
+**v0.2.0**
 * Improved Animation enter/exit on Shortcuts (See [Preview](http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif))
-* Update `ShortcutsCreation` class, now support all grid size!! (Tested major grid size 4x5, 4x4, 5x5, 5x4)
+* Update `ShortcutsCreation` class, now support all grid size!! (Tested major grid size Column x Row: 4x5, 4x4, 5x5, 5x4)
 * Added class `Utils`
     * Public method `GridSize getGridSize(AdapterView gridView)`
     * Public method `int getToolbarHeight(Activity activity)` moved from `ShortcutsCreation`
