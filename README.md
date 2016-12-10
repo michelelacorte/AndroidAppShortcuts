@@ -170,9 +170,12 @@ Android API 14+
     * Public method `int getToolbarHeight(Activity activity)` moved from `ShortcutsCreation`
 * Added class `GridSize`
     * Public constructor `GridSize(int nColumn, int nRow)`
-    * Public method `int getRow()`
-    * Public method `int getColumn()`
+    * Public method `int getRowCount()`
+    * Public method `int getColumnCount()`
 * Update `ShortcutsCreation`, added param `int rowHeight` to constructor
+* Update `ShortcutsCreation` class
+    * Added constructor `ShortcutsCreation(Activity activity, ViewGroup masterLayout, GridView gridView)`
+    * Added private method  boolean `isClickOnItem(int currentXPosition, int currentYPosition, GridSize gridSize)`
 * Deleted `ResizeAnimation` class
 * Bug fix and code improvement
 
