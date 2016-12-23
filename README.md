@@ -1,6 +1,9 @@
 # AndroidShortcuts
 <h2 align="center">Shortcuts for Android on Pre Nougat 7.1!</h1>
 
+#BIG UPDATE, AIDL COMMUNICATION IS HERE, SOON ALL DEVELOPERS WILL ONLY IMPLEMENT SHORTCUTS LAYOUT, THEN IT'S UP TO DEVELOPER TO IMPLEMENT THEIR OWN SHORTCUTS, LIKE GOOGLE!!!
+
+
 ##WHAT IS ANDROID SHORTCUTS?
 
 The shorctus have a features of Android 7.1 Nougat, and available only for the launcher that implement, in this library, you can implement in your launcher shorctus starting from API 14!
@@ -157,6 +160,10 @@ Android API 14+
 ![project maintained](https://img.shields.io/badge/Project-Maintained-green.svg)
 
 ##CHANGELOG
+
+**v1.0.0 (Coming Soon!)**
+* Added class `ShortcutsService` that create remote connection and use AIDL to communicate with launcher, soon all developers will only implement shortcuts layout, then it's up to developer to implement their own shortcuts, like google!!!
+* Improved animation, almost equal to the Pixels Launcher.
 
 **v0.2.0**
 * Improved Animation enter/exit on Shortcuts (See [Preview](http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif))
