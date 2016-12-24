@@ -49,7 +49,13 @@ Of course, you can also choose what you want to donate, all donations are awesom
 ###Stay Tuned!
 ###For other detail to use force touch follow [Force Touch](https://github.com/michelelacorte/ForceTouch)
 
-##APP EXAMPLE (v0.2.0 Preview)
+##APP EXAMPLE 
+
+v1.0.0 Preview
+
+<h1 align="center"><img src="http://i.giphy.com/l3vR814bxMIwQveiA.gif"/></h1>
+
+v0.2.0 Preview
 
 <h1 align="center"><img src="http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif"/></h1>
 
@@ -161,9 +167,34 @@ Android API 14+
 
 ##CHANGELOG
 
-**v1.0.0 (Coming Soon!)**
+**v1.0.0 (Coming Soon! See [Preview](http://i.giphy.com/l3vR814bxMIwQveiA.gif))**
 * Added class `ShortcutsService` that create remote connection and use AIDL to communicate with launcher, soon all developers will only implement shortcuts layout, then it's up to developer to implement their own shortcuts, like google!!!
 * Improved animation, almost equal to the Pixels Launcher.
+* Added click shadow on shortcuts.
+* Added AIDL interface `IRemoteShortcutClickListener`
+    * Method `void onShortcutsClickListener()`
+* Added AIDL interface `IRemoteShortcutService`
+    * Method `void addShortcutsWithRemoteClickListener(int shortcutsImage, String shortcutsText, IRemoteShortcutClickListener onShortcutsClickListener)`
+    * Method `void addShortcuts(int shortcutsImage, String shortcutsText)`
+    * Method `List<Shortcuts> getShortcuts()`
+* Added AIDL interface `Shortcuts` provide parcelable Shortcuts
+* Added class `RemoteServiceConnection`
+    * Public constructor `RemoteServiceConnection(Activity activity, List<Shortcuts> shortcuts)`
+    * Public constructor `RemoteServiceConnection(Activity activity, Shortcuts... shortcuts)`
+    * Public method `boolean connectServiceAndVerifyConnection(RemoteServiceConnection serviceConnection)` to bind service and return boolean to check if is connected.
+    * Public method  `void connectService(RemoteServiceConnection serviceConnection)` to bind service.
+    * Public method `IRemoteShortcutService getService()` to retreive service.
+* Added class `ShortcutsService` to create service
+* Update class `Shortcuts`
+    * Added constructor `Shortcuts(int shortcutsImage, String shortcutsText, final IRemoteShortcutClickListener onIRemoteShortcutsClickListener)`
+    * Added method `int getShortcutsImage()`
+    * Added method `String getShortcutsText()`
+    * Added method `IRemoteShortcutClickListener getOnIRemoteShortcutsClickListener()`
+    * Added method `View.OnClickListener getOnShortcutsClickListener()`
+    * Update class to `Parcelable` for AIDL communication.
+* Update class `ShortcutsCreation`
+    * Added private method `void createShortcutsBasedOnGridSize(int currentXPosition, int currentYPosition, int rowHeight, GridSize gridSize, List<Shortcuts> shortcuts)`
+    * Improved method `getPositionInGrid()`
 
 **v0.2.0**
 * Improved Animation enter/exit on Shortcuts (See [Preview](http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif))
