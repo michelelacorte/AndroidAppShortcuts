@@ -1,6 +1,9 @@
 # AndroidShortcuts
 <h2 align="center">Shortcuts for Android on Pre Nougat 7.1!</h1>
 
+#BIG UPDATE, AIDL COMMUNICATION IS HERE, SOON ALL DEVELOPERS WILL ONLY IMPLEMENT SHORTCUTS LAYOUT, THEN IT'S UP TO DEVELOPER TO IMPLEMENT THEIR OWN SHORTCUTS, LIKE GOOGLE!!!
+
+
 ##WHAT IS ANDROID SHORTCUTS?
 
 The shorctus have a features of Android 7.1 Nougat, and available only for the launcher that implement, in this library, you can implement in your launcher shorctus starting from API 14!
@@ -29,7 +32,7 @@ This project needs you! If you would like to support this project's further deve
 Of course, you can also choose what you want to donate, all donations are awesome!!
 
 <img align="left" src="https://s15.postimg.org/km4eygofv/ic_launcher.png">
-#v0.1.0
+#v0.2.0
 
 ###Here we are!
 ###The touch force is ready and is going to get on the custom launcher !!
@@ -46,15 +49,17 @@ Of course, you can also choose what you want to donate, all donations are awesom
 ###Stay Tuned!
 ###For other detail to use force touch follow [Force Touch](https://github.com/michelelacorte/ForceTouch)
 
-##APP EXAMPLE (v0.2.0 Preview)
+##APP EXAMPLE 
+
+v1.0.0 Preview
+
+<h1 align="center"><img src="http://i.giphy.com/l3vR814bxMIwQveiA.gif"/></h1>
+
+v0.2.0 Preview
 
 <h1 align="center"><img src="http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif"/></h1>
 
 ##USAGE
-
-###N.B
-
-###This version is just a pre-relase to allow everyone to try it and report any bugs, so it support grid size 4x5 (Column x Row), in future versions there will be other dimensions!!
 
 
 Add this to `build.gradle`
@@ -71,7 +76,7 @@ allprojects {
 Than add this dependencies
 
 ```groovy
-compile 'com.github.michelelacorte:AndroidShortcuts:0.1.0'
+compile 'com.github.michelelacorte:AndroidShortcuts:0.2.0'
 ```
 
 Now let's start to create Shortcuts!
@@ -124,7 +129,7 @@ Than in MainActivity
                 shortcutsCreation.clearAllLayout();
                 
                 //Now create shortcuts!!
-                shortcutsCreation.createShortcuts((int)motionEvent.getX(), (int)motionEvent.getY(),
+                shortcutsCreation.createShortcuts((int)motionEvent.getX(), (int)motionEvent.getY(), 96,
                         new Shortcuts(R.mipmap.ic_launcher, "Shortcuts", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -162,9 +167,43 @@ Android API 14+
 
 ##CHANGELOG
 
-**v0.2.0 (Coming Soon!)**
+**v1.0.0 (Coming Soon! See [Preview](http://i.giphy.com/l3vR814bxMIwQveiA.gif))**
+* Improved Example App, soon relased on Google Play
+* Added class `ShortcutsService` that create remote connection and use AIDL to communicate with launcher, soon all developers will only implement shortcuts layout, then it's up to developer to implement their own shortcuts, like google!!!
+* Improved animation, almost equal to the Pixels Launcher.
+* Added 2 style right menù of shortcuts (see int optionLayoutStyle) 
+* Added click shadow on shortcuts.
+* Added AIDL interface `IRemoteShortcutClickListener`
+    * Method `void onShortcutsClickListener()` when user click on shortcuts
+    * Method `void onShortcutsOptionClickListener()` when user click on right menù
+* Added AIDL interface `IRemoteShortcutService`
+    * Method `void addShortcutsWithRemoteClickListener(int shortcutsImage, String shortcutsText, IRemoteShortcutClickListener onShortcutsClickListener)`
+    * Method `void addShortcuts(int shortcutsImage, String shortcutsText)`
+    * Method `List<Shortcuts> getShortcuts()`
+* Added AIDL interface `Shortcuts` provide parcelable Shortcuts
+* Added class `RemoteServiceConnection`
+    * Public constructor `RemoteServiceConnection(Activity activity, List<Shortcuts> shortcuts)`
+    * Public constructor `RemoteServiceConnection(Activity activity, Shortcuts... shortcuts)`
+    * Public method `boolean connectServiceAndVerifyConnection(RemoteServiceConnection serviceConnection)` to bind service and return boolean to check if is connected.
+    * Public method  `void connectService(RemoteServiceConnection serviceConnection)` to bind service.
+    * Public method `IRemoteShortcutService getService()` to retreive service.
+* Added class `ShortcutsService` to create service
+* Update class `Shortcuts`
+    * Added constructor `Shortcuts(int shortcutsImage, String shortcutsText, final IRemoteShortcutClickListener onIRemoteShortcutsClickListener)`
+    * Added method `int getShortcutsImage()`
+    * Added method `String getShortcutsText()`
+    * Added method `IRemoteShortcutClickListener getOnIRemoteShortcutsClickListener()`
+    * Added method `View.OnClickListener getOnShortcutsClickListener()`
+    * Update class to `Parcelable` for AIDL communication.
+* Update class `ShortcutsCreation`
+    * Added private method `void createShortcutsBasedOnGridSize(int currentXPosition, int currentYPosition, int rowHeight, GridSize gridSize, List<Shortcuts> shortcuts)`
+    * Update method `void createShortcutsBasedOnGridSize(int currentXPosition, int currentYPosition, int rowHeight, GridSize gridSize, int optionLayoutStyle, List<Shortcuts> shortcuts)`
+    * Update method `void createShortcutsBasedOnGridSize(int currentXPosition, int currentYPosition, int rowHeight, GridSize gridSize, int optionLayoutStyle, final Shortcuts... shortcuts)`
+    * Improved method `getPositionInGrid()`
+
+**v0.2.0**
 * Improved Animation enter/exit on Shortcuts (See [Preview](http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif))
-* Update `ShortcutsCreation` class, now support all grid size!! (Tested major grid size 4x5, 4x4, 5x5, 5x4)
+* Update `ShortcutsCreation` class, now support all grid size!! (Tested major grid size Column x Row: 4x5, 4x4, 5x5, 5x4)
 * Added class `Utils`
     * Public method `GridSize getGridSize(AdapterView gridView)`
     * Public method `int getToolbarHeight(Activity activity)` moved from `ShortcutsCreation`
