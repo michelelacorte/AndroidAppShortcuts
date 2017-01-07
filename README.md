@@ -171,9 +171,11 @@ Android API 14+
 * Improved Example App, soon relased on Google Play
 * Added class `ShortcutsService` that create remote connection and use AIDL to communicate with launcher, soon all developers will only implement shortcuts layout, then it's up to developer to implement their own shortcuts, like google!!!
 * Improved animation, almost equal to the Pixels Launcher.
+* Added 2 style right menù of shortcuts (see int optionLayoutStyle) 
 * Added click shadow on shortcuts.
 * Added AIDL interface `IRemoteShortcutClickListener`
-    * Method `void onShortcutsClickListener()`
+    * Method `void onShortcutsClickListener()` when user click on shortcuts
+    * Method `void onShortcutsOptionClickListener()` when user click on right menù
 * Added AIDL interface `IRemoteShortcutService`
     * Method `void addShortcutsWithRemoteClickListener(int shortcutsImage, String shortcutsText, IRemoteShortcutClickListener onShortcutsClickListener)`
     * Method `void addShortcuts(int shortcutsImage, String shortcutsText)`
@@ -195,6 +197,8 @@ Android API 14+
     * Update class to `Parcelable` for AIDL communication.
 * Update class `ShortcutsCreation`
     * Added private method `void createShortcutsBasedOnGridSize(int currentXPosition, int currentYPosition, int rowHeight, GridSize gridSize, List<Shortcuts> shortcuts)`
+    * Update method `void createShortcutsBasedOnGridSize(int currentXPosition, int currentYPosition, int rowHeight, GridSize gridSize, int optionLayoutStyle, List<Shortcuts> shortcuts)`
+    * Update method `void createShortcutsBasedOnGridSize(int currentXPosition, int currentYPosition, int rowHeight, GridSize gridSize, int optionLayoutStyle, final Shortcuts... shortcuts)`
     * Improved method `getPositionInGrid()`
 
 **v0.2.0**
