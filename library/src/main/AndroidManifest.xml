@@ -3,7 +3,12 @@
 
     <application android:allowBackup="true" android:label="@string/app_name"
         android:supportsRtl="true">
-
+        <service android:name=".service.ShortcutsService">
+            <intent-filter>
+                <action android:name="it.michelelacorte.androidshortcuts.util.ShortcutsService" />
+            </intent-filter>
+        </service>
     </application>
+
 
 </manifest>

@@ -3,21 +3,30 @@ package it.michelelacorte.androidshortcuts;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.renderscript.ScriptIntrinsicHistogram;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import it.michelelacorte.androidshortcuts.util.GridSize;
 import it.michelelacorte.androidshortcuts.util.Utils;
@@ -73,7 +82,7 @@ public class ShortcutsCreation {
      * @param currentYPosition int
      * @param shortcuts Shortcuts...
      */
-    public void createShortcuts(int currentXPosition, int currentYPosition, int rowHeight, Shortcuts... shortcuts){
+    public void createShortcuts(int currentXPosition, int currentYPosition, int rowHeight, int optionLayoutStyle, Shortcuts... shortcuts){
         if(shortcuts.length > MAX_NUMBER_OF_SHORTCUTS){
             Log.e(TAG, "Invalid Shortcuts number, max value is " + String.valueOf(MAX_NUMBER_OF_SHORTCUTS) + "!");
             return;
@@ -90,13 +99,136 @@ public class ShortcutsCreation {
         //Get grid size
         GridSize gridSize = Utils.getGridSize(gridView);
         //Create shortcuts based on grid size
-
-        createShortcutsBasedOnGridSize(currentXPosition, currentYPosition, rowHeight, gridSize, shortcuts);
+        createShortcutsBasedOnGridSize(currentXPosition, currentYPosition, rowHeight, gridSize, optionLayoutStyle, shortcuts);
 
         Log.d(TAG, "Shortcuts created!");
     }
 
-    private void createShortcutsBasedOnGridSize(int currentXPosition, int currentYPosition, int rowHeight, GridSize gridSize, Shortcuts... shortcuts){
+    public void createShortcuts(int currentXPosition, int currentYPosition, int rowHeight, int optionLayoutStyle, List<Shortcuts> shortcuts){
+        if(shortcuts.size() > MAX_NUMBER_OF_SHORTCUTS){
+            Log.e(TAG, "Invalid Shortcuts number, max value is " + String.valueOf(MAX_NUMBER_OF_SHORTCUTS) + "!");
+            return;
+        }
+        if(rowHeight < 0){
+            Log.e(TAG, "Invalid Row Height, it must be greater than 0");
+            return;
+        }
+        if(shortcuts.size() == 0){
+            Log.e(TAG, "Shortcuts must be at least one!");
+            return;
+        }
+
+        //Get grid size
+        GridSize gridSize = Utils.getGridSize(gridView);
+        //Create shortcuts based on grid size
+        createShortcutsBasedOnGridSize(currentXPosition, currentYPosition, rowHeight, gridSize, optionLayoutStyle, shortcuts);
+
+        Log.d(TAG, "Shortcuts created!");
+    }
+
+    /**
+     * Create shortcuts based on grid size with List
+     * @param currentXPosition int
+     * @param currentYPosition int
+     * @param rowHeight int
+     * @param gridSize GridSize
+     * @param shortcuts List<Shortcuts>
+     */
+    private void createShortcutsBasedOnGridSize(int currentXPosition, int currentYPosition, int rowHeight, GridSize gridSize, int optionLayoutStyle, List<Shortcuts> shortcuts){
+        getScreenDimension();
+        positionInGrid = getPositionInGrid(currentXPosition, currentYPosition, gridView);
+
+        if(layout != null || triangle != null)
+            clearAllLayout();
+        if (isClickOnItem(currentXPosition, currentYPosition, gridSize)) {
+            LayoutInflater inflater = LayoutInflater.from(context);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(DIM_WIDTH, DIM_HEIGHT);
+            RelativeLayout.LayoutParams paramsTriangle = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+            //int mIconHeight = ((GridView) gridView).getColumnWidth();
+            int mIconHeight;
+            int mIconWidth = maxXScreen / ((GridView) gridView).getNumColumns();
+            int dim = (positionInGrid) * mIconWidth;
+            int layoutHeightTotal = DIM_HEIGHT * shortcuts.size() + 20;
+
+            triangle = (RelativeLayout) inflater.inflate(R.layout.shortcuts_triangle, null, false);
+
+            //Scale animation right to left
+            ScaleAnimation animationRightToLeft = new ScaleAnimation(0.0f, 1.0f, 1.0f, 1.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f);
+            animationRightToLeft.setDuration(200);
+
+            //Scale animation left to right
+            ScaleAnimation animationLeftToRight = new ScaleAnimation(0.0f, 1.0f, 1.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            animationLeftToRight.setDuration(200);
+
+            for (int i = 0; i < shortcuts.size(); i++) {
+                layout[i] = (RelativeLayout) inflater.inflate(R.layout.shortcuts, null, false);
+                shortcuts.get(i).init(layout[i], optionLayoutStyle);
+                if ((dim + DIM_WIDTH) > maxXScreen) {
+                    //Destra
+                    layout[i].setX(dim - DIM_WIDTH + (mIconWidth) - mIconWidth / 4);
+                    triangle.setX((float) (dim + mIconWidth - mIconWidth / 1.5));
+                    triangle.setRotation(180);
+
+                    //Start Animation
+                    layout[i].startAnimation(animationRightToLeft);
+                    triangle.startAnimation(animationRightToLeft);
+                } else {
+                    //Sinistra
+
+                    layout[i].setX(dim + mIconWidth / 4);
+                    triangle.setX((float) (dim + mIconWidth / 2));
+                    triangle.setRotation(180);
+
+                    //Start Animation
+                    layout[i].startAnimation(animationLeftToRight);
+                    triangle.startAnimation(animationLeftToRight);
+                }
+
+                if ((toolbarHeight = Utils.getToolbarHeight(activity)) > 0) {
+                    int maxYScreenWithToolbar = maxYScreen - toolbarHeight * 2;
+                    positionInGrid = ((GridView) gridView).pointToPosition((int) currentXPosition, (int) currentYPosition);
+                    positionInGrid /= gridSize.getColumnCount();
+                    mIconHeight = Math.round(displayDensity * rowHeight) * positionInGrid + 1;
+                    if (mIconHeight + layoutHeightTotal > maxYScreenWithToolbar) {
+                        //Alto
+                        if (i >= 1) {
+                            layout[i].setY(+layoutHeightTotal + mIconHeight / 5 - 220 + toolbarHeight * 2);
+                        } else {
+                            layout[i].setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2);
+                        }
+                        triangle.setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2 + 160);
+                        triangle.setRotation(0);
+                    } else {
+                        //Basso
+                        positionInGrid = ((GridView) gridView).pointToPosition((int) currentXPosition, (int) currentYPosition);
+                        positionInGrid /= gridSize.getColumnCount();
+                        mIconHeight = Math.round(displayDensity * rowHeight) * positionInGrid + 1;
+                        if (i >= 1) {
+                            layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2 - 220);
+                        } else {
+                            layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2);
+                        }
+                        triangle.setY((float) (+mIconHeight * 3 / 4 + layoutHeightTotal * i - toolbarHeight + 80));
+                    }
+                } else {
+                    //TODO: Layout without Toolbar
+                }
+                masterLayout.addView(layout[i], params);
+            }
+            masterLayout.addView(triangle, paramsTriangle);
+        }
+    }
+
+    /**
+     * Create shortcuts based on grid size with varargs
+     * @param currentXPosition int
+     * @param currentYPosition int
+     * @param rowHeight int
+     * @param gridSize GridSize
+     * @param shortcuts Shortcuts...
+     */
+    private void createShortcutsBasedOnGridSize(int currentXPosition, int currentYPosition, int rowHeight, GridSize gridSize, int optionLayoutStyle, final Shortcuts... shortcuts){
         getScreenDimension();
         positionInGrid = getPositionInGrid(currentXPosition, currentYPosition, gridView);
 
@@ -125,7 +257,7 @@ public class ShortcutsCreation {
 
             for (int i = 0; i < shortcuts.length; i++) {
                 layout[i] = (RelativeLayout) inflater.inflate(R.layout.shortcuts, null, false);
-                shortcuts[i].init(layout[i]);
+                shortcuts[i].init(layout[i], optionLayoutStyle);
                 if ((dim + DIM_WIDTH) > maxXScreen) {
                     //Destra
                     layout[i].setX(dim - DIM_WIDTH + (mIconWidth) - mIconWidth / 4);
