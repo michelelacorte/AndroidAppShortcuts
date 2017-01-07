@@ -76,7 +76,7 @@ allprojects {
 Than add this dependencies
 
 ```groovy
-compile 'com.github.michelelacorte:AndroidShortcuts:0.2.0'
+compile 'com.github.michelelacorte:AndroidShortcuts:1.0.0'
 ```
 
 Now let's start to create Shortcuts!
@@ -167,7 +167,7 @@ Android API 14+
 
 ##CHANGELOG
 
-**v1.0.0 (Coming Soon! See [Preview](http://i.giphy.com/l3vR814bxMIwQveiA.gif))**
+**v1.0.0**
 * Improved Example App, soon relased on Google Play
 * Added class `ShortcutsService` that create remote connection and use AIDL to communicate with launcher, soon all developers will only implement shortcuts layout, then it's up to developer to implement their own shortcuts, like google!!!
 * Improved animation, almost equal to the Pixels Launcher.
