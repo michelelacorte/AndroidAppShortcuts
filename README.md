@@ -1,12 +1,11 @@
 # AndroidShortcuts
 <h2 align="center">Shortcuts for Android on Pre Nougat 7.1!</h1>
 
-#BIG UPDATE, AIDL COMMUNICATION IS HERE, SOON ALL DEVELOPERS WILL ONLY IMPLEMENT SHORTCUTS LAYOUT, THEN IT'S UP TO DEVELOPER TO IMPLEMENT THEIR OWN SHORTCUTS, LIKE GOOGLE!!!
-
 
 ##WHAT IS ANDROID SHORTCUTS?
 
 The shorctus have a features of Android 7.1 Nougat, and available only for the launcher that implement, in this library, you can implement in your launcher shorctus starting from API 14!
+Whit AIDL communication all developers will only implement shortcuts layout (this library), then it's up to developer to implement their own shortcuts, like Google!!!
 I have also implemented [Force Touch](https://github.com/michelelacorte/ForceTouch) and YOU CAN USE ON CUSTOM LAUNCHER WITH SHORTCUTS!!
 
 ##DONATIONS
@@ -85,82 +84,11 @@ Than add this dependencies
 ```groovy
 compile 'com.github.michelelacorte:AndroidShortcuts:1.0.0'
 ```
+##DOCUMENTATION 
 
-Now let's start to create Shortcuts!
+- [App Shortcuts Locale](https://github.com/michelelacorte/SwipeableCard/blob/master/SHORTCUTSLOCALE.md)
+- [App Shortcuts AIDL](https://github.com/michelelacorte/SwipeableCard/blob/master/SHORTCUTSAIDL.md)
 
-```groovy
-    //Layout for shortcuts
-    private AdapterView gridView;
-    private RelativeLayout activityParent;
-```
-
-Than in MainActivity
-
-```
-        activityParent = (RelativeLayout) findViewById(R.id.activity_main);
-        gridView=(GridView) findViewById(R.id.gridView);
-        gridView.setAdapter(new MyArrayAdapter(this, R.layout.app_grid_item));
-        
-        //Create Shortcuts
-        final ShortcutsCreation shortcutsCreation = new ShortcutsCreation(MainActivity.this, activityParent, gridView);
-        
-        //Create gesture detector for onLongPress
-        final GestureDetector gestureDetector = new GestureDetector(getApplicationContext(), new GestureDetector.OnGestureListener() {
-            @Override
-            public boolean onDown(MotionEvent motionEvent) {
-                shortcutsCreation.clearAllLayout();
-                return false;
-            }
-
-            @Override
-            public void onShowPress(MotionEvent motionEvent) {
-                shortcutsCreation.clearAllLayout();
-            }
-
-            @Override
-            public boolean onSingleTapUp(MotionEvent motionEvent) {
-                shortcutsCreation.clearAllLayout();
-                return false;
-            }
-
-            @Override
-            public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-                shortcutsCreation.clearAllLayout();
-                return false;
-            }
-
-            @Override
-            public void onLongPress(MotionEvent motionEvent) {
-            
-                //Make sure to clear layout before create new
-                shortcutsCreation.clearAllLayout();
-                
-                //Now create shortcuts!!
-                shortcutsCreation.createShortcuts((int)motionEvent.getX(), (int)motionEvent.getY(), 96,
-                        new Shortcuts(R.mipmap.ic_launcher, "Shortcuts", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Toast.makeText(getApplicationContext(), "Hello Shortcuts!!", Toast.LENGTH_LONG).show();
-                            }
-                        }),
-                        new Shortcuts(R.mipmap.ic_launcher, "Hello!"));
-            }
-
-            @Override
-            public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-                shortcutsCreation.clearAllLayout();
-                return false;
-            }
-        });
-
-        // Set custom touch listener
-        gridView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return gestureDetector.onTouchEvent(motionEvent);
-            }
-        });
-```
 
 Coming soon with [Force Touch](https://github.com/michelelacorte/ForceTouch) implementation
 
