@@ -50,9 +50,9 @@ Of course, you can also choose what you want to donate, all donations are awesom
 
 ##APP EXAMPLE 
 
-####Android Shortcuts is on Google Play!!! (Coming Soon!)
+####Android Shortcuts is on Google Play!!!
 
-<a href="null">
+<a href="https://play.google.com/store/apps/details?id=it.michelelacorte.exampleandroidshortcuts">
 <img alt="Get it on Google Play" src="https://s32.postimg.org/50h5qj4lx/google_play_badge.png" />
 </a>
 
