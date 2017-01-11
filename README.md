@@ -86,7 +86,7 @@ compile 'com.github.michelelacorte:AndroidShortcuts:1.0.0'
 ```
 ##DOCUMENTATION 
 
-- [App Shortcuts Locale](https://github.com/michelelacorte/SwipeableCard/blob/master/SHORTCUTSLOCALE.md)
+- [App Shortcuts Locale](https://github.com/michelelacorte/AndroidShortcuts/blob/master/SHORTCUTSLOCALE.md)
 
 
 Coming soon with [Force Touch](https://github.com/michelelacorte/ForceTouch) implementation
