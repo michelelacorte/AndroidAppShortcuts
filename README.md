@@ -5,7 +5,7 @@
 ##WHAT IS ANDROID SHORTCUTS?
 
 The shorctus have a features of Android 7.1 Nougat, and available only for the launcher that implement, in this library, you can implement in your launcher shorctus starting from API 14!
-Whit AIDL communication all developers will only implement shortcuts layout (this library), then it's up to developer to implement their own shortcuts, like Google!!!
+Whit new communication all developers will only implement shortcuts layout (this library), then it's up to developer to implement their own shortcuts, like Google!!!
 I have also implemented [Force Touch](https://github.com/michelelacorte/ForceTouch) and YOU CAN USE ON CUSTOM LAUNCHER WITH SHORTCUTS!!
 
 ##DONATIONS
@@ -87,7 +87,6 @@ compile 'com.github.michelelacorte:AndroidShortcuts:1.0.0'
 ##DOCUMENTATION 
 
 - [App Shortcuts Locale](https://github.com/michelelacorte/SwipeableCard/blob/master/SHORTCUTSLOCALE.md)
-- [App Shortcuts AIDL](https://github.com/michelelacorte/SwipeableCard/blob/master/SHORTCUTSAIDL.md)
 
 
 Coming soon with [Force Touch](https://github.com/michelelacorte/ForceTouch) implementation
@@ -102,13 +101,16 @@ Android API 14+
 
 ##CHANGELOG
 
+**v1.1.0 (Coming Soon!)**
+* Deprecate AIDL communication, not suited to the needs, replaced with simple file data. 
+
 **v1.0.0**
 * Improved Example App, soon relased on Google Play
-* Added class `ShortcutsService` that create remote connection and use AIDL to communicate with launcher, soon all developers will only implement shortcuts layout, then it's up to developer to implement their own shortcuts, like google!!!
+* ~~Added class `ShortcutsService` that create remote connection and use AIDL to communicate with launcher, soon all developers will only implement shortcuts layout, then it's up to developer to implement their own shortcuts, like google!!!~~
 * Improved animation, almost equal to the Pixels Launcher.
 * Added 2 style right menù of shortcuts (see int optionLayoutStyle) 
 * Added click shadow on shortcuts.
-* Added AIDL interface `IRemoteShortcutClickListener`
+* ~~Added AIDL interface `IRemoteShortcutClickListener`
     * Method `void onShortcutsClickListener()` when user click on shortcuts
     * Method `void onShortcutsOptionClickListener()` when user click on right menù
 * Added AIDL interface `IRemoteShortcutService`
@@ -122,14 +124,14 @@ Android API 14+
     * Public method `boolean connectServiceAndVerifyConnection(RemoteServiceConnection serviceConnection)` to bind service and return boolean to check if is connected.
     * Public method  `void connectService(RemoteServiceConnection serviceConnection)` to bind service.
     * Public method `IRemoteShortcutService getService()` to retreive service.
-* Added class `ShortcutsService` to create service
+* Added class `ShortcutsService` to create service~~
 * Update class `Shortcuts`
-    * Added constructor `Shortcuts(int shortcutsImage, String shortcutsText, final IRemoteShortcutClickListener onIRemoteShortcutsClickListener)`
+    * ~~Added constructor `Shortcuts(int shortcutsImage, String shortcutsText, final IRemoteShortcutClickListener onIRemoteShortcutsClickListener)`~~
     * Added method `int getShortcutsImage()`
     * Added method `String getShortcutsText()`
-    * Added method `IRemoteShortcutClickListener getOnIRemoteShortcutsClickListener()`
+    * ~~Added method `IRemoteShortcutClickListener getOnIRemoteShortcutsClickListener()`~~
     * Added method `View.OnClickListener getOnShortcutsClickListener()`
-    * Update class to `Parcelable` for AIDL communication.
+    * ~~Update class to `Parcelable` for AIDL communication.~~
 * Update class `ShortcutsCreation`
     * Added private method `void createShortcutsBasedOnGridSize(int currentXPosition, int currentYPosition, int rowHeight, GridSize gridSize, List<Shortcuts> shortcuts)`
     * Update method `void createShortcutsBasedOnGridSize(int currentXPosition, int currentYPosition, int rowHeight, GridSize gridSize, int optionLayoutStyle, List<Shortcuts> shortcuts)`
