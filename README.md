@@ -30,23 +30,12 @@ This project needs you! If you would like to support this project's further deve
 
 Of course, you can also choose what you want to donate, all donations are awesome!!
 
-<img align="left" src="https://s15.postimg.org/km4eygofv/ic_launcher.png">
-#v0.2.0
+<img align="left" src="https://s23.postimg.org/m2d28wraj/ic_launcher.png">
+#v1.0.0 Preview
 
-###Here we are!
-###The touch force is ready and is going to get on the custom launcher !!
+<h1 align="center"><img src="http://i.giphy.com/l3vR814bxMIwQveiA.gif"/></h1>
 
-###As promised I've implemented Force Touch in my custom launcher ... and you see the picture
-
-<h1 align="center"><img src="https://s17.postimg.org/vimarchhb/Force_Touch_Launcher_framed.png"/></h1>
-
-###Yes, I'm working with shortcuts Android 7.1 Nougat! and will soon be available for custom launcher from API 14 !!
-###See an example here (beta)
-
-<h1 align="center"><img src="http://i.giphy.com/3oz8xM1ZWIeAjdXTHy.gif"/></h1>
-
-###Stay Tuned!
-###For other detail to use force touch follow [Force Touch](https://github.com/michelelacorte/ForceTouch)
+##v0.2.0 Preview [Click Here](http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif)
 
 ##APP EXAMPLE 
 
@@ -55,15 +44,6 @@ Of course, you can also choose what you want to donate, all donations are awesom
 <a href="https://play.google.com/store/apps/details?id=it.michelelacorte.exampleandroidshortcuts">
 <img alt="Get it on Google Play" src="https://s32.postimg.org/50h5qj4lx/google_play_badge.png" />
 </a>
-
-
-v1.0.0 Preview
-
-<h1 align="center"><img src="http://i.giphy.com/l3vR814bxMIwQveiA.gif"/></h1>
-
-v0.2.0 Preview
-
-<h1 align="center"><img src="http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif"/></h1>
 
 ##USAGE
 
