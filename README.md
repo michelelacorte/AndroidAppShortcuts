@@ -110,21 +110,21 @@ Android API 14+
 * Improved animation, almost equal to the Pixels Launcher.
 * Added 2 style right menù of shortcuts (see int optionLayoutStyle) 
 * Added click shadow on shortcuts.
-* ~~Added AIDL interface `IRemoteShortcutClickListener`
-    * Method `void onShortcutsClickListener()` when user click on shortcuts
-    * Method `void onShortcutsOptionClickListener()` when user click on right menù
-* Added AIDL interface `IRemoteShortcutService`
-    * Method `void addShortcutsWithRemoteClickListener(int shortcutsImage, String shortcutsText, IRemoteShortcutClickListener onShortcutsClickListener)`
-    * Method `void addShortcuts(int shortcutsImage, String shortcutsText)`
-    * Method `List<Shortcuts> getShortcuts()`
-* Added AIDL interface `Shortcuts` provide parcelable Shortcuts
-* Added class `RemoteServiceConnection`
-    * Public constructor `RemoteServiceConnection(Activity activity, List<Shortcuts> shortcuts)`
-    * Public constructor `RemoteServiceConnection(Activity activity, Shortcuts... shortcuts)`
-    * Public method `boolean connectServiceAndVerifyConnection(RemoteServiceConnection serviceConnection)` to bind service and return boolean to check if is connected.
-    * Public method  `void connectService(RemoteServiceConnection serviceConnection)` to bind service.
-    * Public method `IRemoteShortcutService getService()` to retreive service.
-* Added class `ShortcutsService` to create service~~
+* ~~Added AIDL interface `IRemoteShortcutClickListener`~~
+    * ~~Method `void onShortcutsClickListener()` when user click on shortcuts~~
+    * ~~Method `void onShortcutsOptionClickListener()` when user click on right menù~~
+* ~~Added AIDL interface `IRemoteShortcutService`~~
+    * ~~Method `void addShortcutsWithRemoteClickListener(int shortcutsImage, String shortcutsText, IRemoteShortcutClickListener onShortcutsClickListener)`~~
+    * ~~Method `void addShortcuts(int shortcutsImage, String shortcutsText)`~~
+    * ~~Method `List<Shortcuts> getShortcuts()`~~
+* ~~Added AIDL interface `Shortcuts` provide parcelable Shortcuts~~
+* ~~Added class `RemoteServiceConnection`~~
+    * ~~Public constructor `RemoteServiceConnection(Activity activity, List<Shortcuts> shortcuts)`~~
+    * ~~Public constructor `RemoteServiceConnection(Activity activity, Shortcuts... shortcuts)`~~
+    * ~~Public method `boolean connectServiceAndVerifyConnection(RemoteServiceConnection serviceConnection)` to bind service and return boolean to check if is connected.~~
+    * ~~Public method  `void connectService(RemoteServiceConnection serviceConnection)` to bind service.~~
+    * ~~Public method `IRemoteShortcutService getService()` to retreive service.~~
+* ~~Added class `ShortcutsService` to create service~~
 * Update class `Shortcuts`
     * ~~Added constructor `Shortcuts(int shortcutsImage, String shortcutsText, final IRemoteShortcutClickListener onIRemoteShortcutsClickListener)`~~
     * Added method `int getShortcutsImage()`
