@@ -92,6 +92,23 @@ Android API 14+
 
 **v1.1.0 (Coming Soon!)**
 * Deprecate AIDL communication, not suited to the needs, replaced with simple file data. 
+* Improved Example App, new version 1.1.
+* Added class `RemoteShortcuts`
+    * Method  `static void saveRemoteShortcuts(Activity activity, String packageName, ArrayList<Shortcuts> listOfShortcuts)` for save shortcuts and make accessible on library.
+    * Method `static ArrayList<Shortcuts> getRemoteShortcuts(Activity activity, String packageName)` to get shortcuts from library.
+    * Method `static void checkPermission(Activity activity)` for check WRITE_EXTERNAL_STORAGE permission on Android M and above.
+    * Method `static void requestPermission(Activity activity)` for request permission to user.
+* Update class `Shortcuts`
+    * Added constructor `Shortcuts(Bitmap shortcutsImage, String shortcutsText)`
+    * Added constructor `Shortcuts(int shortcutsImage, String shortcutsText, String targetClass, String targetPackage)` only for remote use.
+    * Added constructor `Shortcuts(Bitmap shortcutsImage, String shortcutsText, String targetClass, String targetPackage)` only for remote use.
+    * Added constructor `Shortcuts(int shortcutsImage, String shortcutsText, View.OnClickListener onShortcutsClickListener, View.OnClickListener onShortcutsOptionClickListener)`
+    * Added getter `View.OnClickListener getOnShortcutsOptionClickListener()`
+    * Added getter `Bitmap getShortcutsImageBitmap()`
+    * Added getter `String getTargetPackage()`
+    * Added getter `String getTargetClass()`
+* Update class `Utils`
+    * Added method `static void createShortcutsOnLauncher(Activity activity, Bitmap shortcutsImage, String shortcutsText, String className, String packageName)` for create shortcuts when user click on right menù (option menù)
 
 **v1.0.0**
 * Improved Example App, soon relased on Google Play
