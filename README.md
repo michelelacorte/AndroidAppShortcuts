@@ -81,6 +81,8 @@ compile 'com.github.michelelacorte:AndroidShortcuts:1.0.0'
 
 - [App Shortcuts Locale](https://github.com/michelelacorte/AndroidShortcuts/blob/master/SHORTCUTSLOCALE.md)
 
+- [App Shortcuts Remote (Coming Soon with v1.1.0)](https://github.com/michelelacorte/AndroidShortcuts/blob/master/SHORTCUTSREMOTE.md)
+
 
 Coming soon with [Force Touch](https://github.com/michelelacorte/ForceTouch) implementation
 
