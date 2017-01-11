@@ -40,7 +40,11 @@ This project needs you! If you would like to support this project's further deve
 Of course, you can also choose what you want to donate, all donations are awesome!!
 
 <img align="left" src="https://s23.postimg.org/m2d28wraj/ic_launcher.png">
-#v1.0.0 Preview
+#v1.1.0 Preview
+
+<h1 align="center"><img src="http://i.giphy.com/26gYBk8pQxudwwWQw.gif"/></h1>
+
+##v1.0.0 Preview
 
 <h1 align="center"><img src="http://i.giphy.com/l3vR814bxMIwQveiA.gif"/></h1>
 
