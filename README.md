@@ -93,6 +93,7 @@ Android API 14+
 **v1.1.0 (Coming Soon!)**
 * Deprecate AIDL communication, not suited to the needs, replaced with simple file data. 
 * Improved Example App, new version 1.1.
+* Improved Shortcuts view, fixed bug.
 * Added class `RemoteShortcuts`
     * Method  `static void saveRemoteShortcuts(Activity activity, String packageName, ArrayList<Shortcuts> listOfShortcuts)` for save shortcuts and make accessible on library.
     * Method `static ArrayList<Shortcuts> getRemoteShortcuts(Activity activity, String packageName)` to get shortcuts from library.
