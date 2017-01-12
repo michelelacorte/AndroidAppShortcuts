@@ -1,7 +1,9 @@
 package it.michelelacorte.androidshortcuts.util;
 
 import android.app.Activity;
-import android.content.Context;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.util.TypedValue;
 import android.widget.AdapterView;
@@ -42,5 +44,30 @@ public class Utils {
             Log.d(TAG, "Toolbar not found, height: 0");
             return 0;
         }
+    }
+
+    /**
+     * Create shortcuts on launcher based on params
+     * @param activity Activity
+     * @param shortcutsImage Bitmap
+     * @param shortcutsText String
+     * @param className String
+     * @param packageName String
+     * @throws ClassNotFoundException
+     */
+    public static void createShortcutsOnLauncher(Activity activity, Bitmap shortcutsImage, String shortcutsText, String className, String packageName) throws ClassNotFoundException {
+        Intent shortcutIntent = new Intent(activity.getApplicationContext(), activity.getClass());
+        shortcutIntent.setComponent(new ComponentName(
+                packageName, className.replaceAll(packageName, "")));
+        shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        Intent addIntent = new Intent();
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, shortcutsText);
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON, shortcutsImage);
+        addIntent.putExtra("duplicate", false);
+        addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+        activity.getApplicationContext().sendBroadcast(addIntent);
     }
 }

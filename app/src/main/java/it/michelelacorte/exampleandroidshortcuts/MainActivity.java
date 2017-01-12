@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.os.IBinder;
-import android.os.RemoteException;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,59 +27,31 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import it.michelelacorte.androidshortcuts.IRemoteShortcutClickListener;
+import it.michelelacorte.androidshortcuts.RemoteShortcuts;
 import it.michelelacorte.androidshortcuts.Shortcuts;
 import it.michelelacorte.androidshortcuts.ShortcutsCreation;
-import it.michelelacorte.androidshortcuts.service.RemoteServiceConnection;
 
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
     private AdapterView gridView;
     private RelativeLayout activityParent;
 
-
-    private RemoteServiceConnection serviceConnection;
-    private String PACKAGE_OF_SHORTCUTS;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Create Remote Shortcut
+        //Example of remote shortcuts
+        ArrayList<Shortcuts> listOfShortcuts = new ArrayList<>();
+        listOfShortcuts.add(new Shortcuts(R.mipmap.ic_launcher, "AndroidShortcuts"));
+        listOfShortcuts.add(new Shortcuts(R.mipmap.ic_launcher, "Test Shortcuts", "it.michelelacorte.exampleandroidshortcuts.MainActivity", "it.michelelacorte.exampleandroidshortcuts"));
 
-        serviceConnection = new RemoteServiceConnection(this,
-                new Shortcuts(R.mipmap.ic_launcher, "Test AIDL"),
-
-                new Shortcuts(R.mipmap.ic_launcher, "Test Service", new IRemoteShortcutClickListener() {
-                    @Override
-                    public void onShortcutsClickListener() throws RemoteException {
-                        Toast.makeText(MainActivity.this, "AIDL Listener!", Toast.LENGTH_SHORT)
-                                .show();
-                    }
-
-                    @Override
-                    public void onShortcutsOptionClickListener() throws RemoteException {
-                        Log.e(TAG, "CLICK SETTED!");
-                        Toast.makeText(MainActivity.this, "Option Listener!", Toast.LENGTH_SHORT)
-                                .show();
-                    }
-
-                    @Override
-                    public IBinder asBinder() {
-                return null;
-            }
-        }));
-
-        boolean isConnected = serviceConnection.connectServiceAndVerifyConnection(serviceConnection);
-        Log.d(TAG, "Connection state: " + isConnected);
-
+        //Call this for save shortcuts and make accessible from library
+        RemoteShortcuts.saveRemoteShortcuts(this, this.getPackageName(), listOfShortcuts);
 
         activityParent = (RelativeLayout) findViewById(R.id.activity_main);
 
@@ -133,21 +103,20 @@ public class MainActivity extends AppCompatActivity {
                         }),
                         new Shortcuts(R.mipmap.ic_launcher, "Nougat!", shortcutsListener));
                 */
-                try {
-                    PACKAGE_OF_SHORTCUTS = serviceConnection.getService().getPackageName();
-                    Log.d(TAG, "NAME OF PACK: " + PACKAGE_OF_SHORTCUTS);
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
 
+                ArrayList<Shortcuts> listOfShortcuts = new ArrayList<>();
                 int positionPointed = ((GridView) gridView).pointToPosition((int) motionEvent.getX(),  (int) motionEvent.getY());
                 Log.d(TAG, "NAME OF PACK CLICKED: " + ExampleArrayAdapter.pkgAppsList.get(positionPointed).activityInfo.packageName);
-                if(ExampleArrayAdapter.pkgAppsList.get(positionPointed).activityInfo.packageName.equalsIgnoreCase(PACKAGE_OF_SHORTCUTS)) {
-                    try {
-                        shortcutsCreation.createShortcuts((int) motionEvent.getX(), (int) motionEvent.getY(), 96, 1, serviceConnection.getService().getShortcuts());
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
+
+                //Get clicked package name
+                String packageName = ExampleArrayAdapter.pkgAppsList.get(positionPointed).activityInfo.packageName;
+
+                //Get shortcuts for this package
+                listOfShortcuts = RemoteShortcuts.getRemoteShortcuts(MainActivity.this, packageName);
+
+                //If shortcuts are defined, show it!
+                if(listOfShortcuts != null && listOfShortcuts.size() > 0) {
+                        shortcutsCreation.createShortcuts((int) motionEvent.getX(), (int) motionEvent.getY(), 96, 0, listOfShortcuts);
                 }else{
                     Toast.makeText(MainActivity.this, "App Shortcuts not found for this package!", Toast.LENGTH_SHORT)
                             .show();

@@ -2,30 +2,17 @@ package it.michelelacorte.androidshortcuts;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Point;
-import android.os.Bundle;
-import android.renderscript.ScriptIntrinsicHistogram;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import it.michelelacorte.androidshortcuts.util.GridSize;
@@ -140,7 +127,7 @@ public class ShortcutsCreation {
 
         if(layout != null || triangle != null)
             clearAllLayout();
-        if (isClickOnItem(currentXPosition, currentYPosition, gridSize)) {
+        if (true/*isClickOnItem(currentXPosition, currentYPosition, gridSize)*/) {
             LayoutInflater inflater = LayoutInflater.from(context);
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(DIM_WIDTH, DIM_HEIGHT);
             RelativeLayout.LayoutParams paramsTriangle = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -163,7 +150,7 @@ public class ShortcutsCreation {
 
             for (int i = 0; i < shortcuts.size(); i++) {
                 layout[i] = (RelativeLayout) inflater.inflate(R.layout.shortcuts, null, false);
-                shortcuts.get(i).init(layout[i], optionLayoutStyle);
+                shortcuts.get(i).init(layout[i], optionLayoutStyle, activity);
                 if ((dim + DIM_WIDTH) > maxXScreen) {
                     //Destra
                     layout[i].setX(dim - DIM_WIDTH + (mIconWidth) - mIconWidth / 4);
@@ -257,7 +244,7 @@ public class ShortcutsCreation {
 
             for (int i = 0; i < shortcuts.length; i++) {
                 layout[i] = (RelativeLayout) inflater.inflate(R.layout.shortcuts, null, false);
-                shortcuts[i].init(layout[i], optionLayoutStyle);
+                shortcuts[i].init(layout[i], optionLayoutStyle, activity);
                 if ((dim + DIM_WIDTH) > maxXScreen) {
                     //Destra
                     layout[i].setX(dim - DIM_WIDTH + (mIconWidth) - mIconWidth / 4);
@@ -323,7 +310,7 @@ public class ShortcutsCreation {
      */
     private boolean isClickOnItem(int currentXPosition, int currentYPosition, GridSize gridSize){
         int positionPointed = ((GridView) gridView).pointToPosition(currentXPosition, currentYPosition);
-        if (positionPointed >= gridSize.getColumnCount()) {
+        if (positionPointed < gridSize.getColumnCount()) {
              return true;
         }
         return false;

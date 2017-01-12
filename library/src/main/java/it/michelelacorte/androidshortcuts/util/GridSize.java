@@ -1,9 +1,5 @@
 package it.michelelacorte.androidshortcuts.util;
 
-import android.util.Log;
-import android.widget.AdapterView;
-import android.widget.GridView;
-
 /**
  * Created by Michele on 09/12/2016.
  */
