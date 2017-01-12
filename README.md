@@ -189,13 +189,13 @@ Android API 14+
 
 Author: Michele Lacorte (micky1995g@gmail.com)
 
+Follow my [Google+](https://plus.google.com/u/0/collection/McidZB)
+
 ##CONTRIBUTING
 
 If you want to contribute to the project fork it and open [Pull Request](https://github.com/michelelacorte/AndroidShortcuts/pulls), or contact me by e-mail.
 
 Each proposal will be accepted!
-
-Follow my [Google+](https://plus.google.com/u/0/collection/McidZB)
 
 ##LICENSE
 
