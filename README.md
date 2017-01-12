@@ -1,12 +1,20 @@
-# AndroidShortcuts
-<h2 align="center">Shortcuts for Android on Pre Nougat 7.1!</h1>
+<h1 align="center">AndroidShortcuts</h1>
+<h2 align="center">Shortcuts for Android on Pre Nougat 7.1!</h2>
 
-#BIG UPDATE, AIDL COMMUNICATION IS HERE, SOON ALL DEVELOPERS WILL ONLY IMPLEMENT SHORTCUTS LAYOUT, THEN IT'S UP TO DEVELOPER TO IMPLEMENT THEIR OWN SHORTCUTS, LIKE GOOGLE!!!
+<span class="badge-paypal"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=LY7EX8WMWPWV6" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a></span>
+
+[![Twitter](https://img.shields.io/badge/Twitter-@LacorteMichele-blue.svg?style=flat)](https://twitter.com/LacorteMichele)
+
+[![API](https://img.shields.io/badge/API-14%2B-yellow.svg?style=flat)](https://android-arsenal.com/api?level=14)
+
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+
 
 
 ##WHAT IS ANDROID SHORTCUTS?
 
 The shorctus have a features of Android 7.1 Nougat, and available only for the launcher that implement, in this library, you can implement in your launcher shorctus starting from API 14!
+Whit new communication all developers will only implement shortcuts layout (this library), then it's up to developer to implement their own shortcuts, like Google!!!
 I have also implemented [Force Touch](https://github.com/michelelacorte/ForceTouch) and YOU CAN USE ON CUSTOM LAUNCHER WITH SHORTCUTS!!
 
 ##DONATIONS
@@ -31,33 +39,24 @@ This project needs you! If you would like to support this project's further deve
 
 Of course, you can also choose what you want to donate, all donations are awesome!!
 
-<img align="left" src="https://s15.postimg.org/km4eygofv/ic_launcher.png">
-#v0.2.0
+<img align="left" src="https://s23.postimg.org/m2d28wraj/ic_launcher.png">
+#v1.1.0 Preview
 
-###Here we are!
-###The touch force is ready and is going to get on the custom launcher !!
+<h1 align="center"><img src="http://i.giphy.com/26gYBk8pQxudwwWQw.gif"/></h1>
 
-###As promised I've implemented Force Touch in my custom launcher ... and you see the picture
-
-<h1 align="center"><img src="https://s17.postimg.org/vimarchhb/Force_Touch_Launcher_framed.png"/></h1>
-
-###Yes, I'm working with shortcuts Android 7.1 Nougat! and will soon be available for custom launcher from API 14 !!
-###See an example here (beta)
-
-<h1 align="center"><img src="http://i.giphy.com/3oz8xM1ZWIeAjdXTHy.gif"/></h1>
-
-###Stay Tuned!
-###For other detail to use force touch follow [Force Touch](https://github.com/michelelacorte/ForceTouch)
-
-##APP EXAMPLE 
-
-v1.0.0 Preview
+##v1.0.0 Preview
 
 <h1 align="center"><img src="http://i.giphy.com/l3vR814bxMIwQveiA.gif"/></h1>
 
-v0.2.0 Preview
+##v0.2.0 Preview [Click Here](http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif)
 
-<h1 align="center"><img src="http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif"/></h1>
+##APP EXAMPLE 
+
+####Android Shortcuts is on Google Play!!!
+
+<a href="https://play.google.com/store/apps/details?id=it.michelelacorte.exampleandroidshortcuts">
+<img alt="Get it on Google Play" src="https://s32.postimg.org/50h5qj4lx/google_play_badge.png" />
+</a>
 
 ##USAGE
 
@@ -78,82 +77,12 @@ Than add this dependencies
 ```groovy
 compile 'com.github.michelelacorte:AndroidShortcuts:1.0.0'
 ```
+##DOCUMENTATION 
 
-Now let's start to create Shortcuts!
+- [App Shortcuts Locale](https://github.com/michelelacorte/AndroidShortcuts/blob/master/SHORTCUTSLOCALE.md)
 
-```groovy
-    //Layout for shortcuts
-    private AdapterView gridView;
-    private RelativeLayout activityParent;
-```
+- [App Shortcuts Remote (Coming Soon with v1.1.0)](https://github.com/michelelacorte/AndroidShortcuts/blob/master/SHORTCUTSREMOTE.md)
 
-Than in MainActivity
-
-```
-        activityParent = (RelativeLayout) findViewById(R.id.activity_main);
-        gridView=(GridView) findViewById(R.id.gridView);
-        gridView.setAdapter(new MyArrayAdapter(this, R.layout.app_grid_item));
-        
-        //Create Shortcuts
-        final ShortcutsCreation shortcutsCreation = new ShortcutsCreation(MainActivity.this, activityParent, gridView);
-        
-        //Create gesture detector for onLongPress
-        final GestureDetector gestureDetector = new GestureDetector(getApplicationContext(), new GestureDetector.OnGestureListener() {
-            @Override
-            public boolean onDown(MotionEvent motionEvent) {
-                shortcutsCreation.clearAllLayout();
-                return false;
-            }
-
-            @Override
-            public void onShowPress(MotionEvent motionEvent) {
-                shortcutsCreation.clearAllLayout();
-            }
-
-            @Override
-            public boolean onSingleTapUp(MotionEvent motionEvent) {
-                shortcutsCreation.clearAllLayout();
-                return false;
-            }
-
-            @Override
-            public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-                shortcutsCreation.clearAllLayout();
-                return false;
-            }
-
-            @Override
-            public void onLongPress(MotionEvent motionEvent) {
-            
-                //Make sure to clear layout before create new
-                shortcutsCreation.clearAllLayout();
-                
-                //Now create shortcuts!!
-                shortcutsCreation.createShortcuts((int)motionEvent.getX(), (int)motionEvent.getY(), 96,
-                        new Shortcuts(R.mipmap.ic_launcher, "Shortcuts", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Toast.makeText(getApplicationContext(), "Hello Shortcuts!!", Toast.LENGTH_LONG).show();
-                            }
-                        }),
-                        new Shortcuts(R.mipmap.ic_launcher, "Hello!"));
-            }
-
-            @Override
-            public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-                shortcutsCreation.clearAllLayout();
-                return false;
-            }
-        });
-
-        // Set custom touch listener
-        gridView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return gestureDetector.onTouchEvent(motionEvent);
-            }
-        });
-```
 
 Coming soon with [Force Touch](https://github.com/michelelacorte/ForceTouch) implementation
 
@@ -167,34 +96,55 @@ Android API 14+
 
 ##CHANGELOG
 
+**v1.1.0 (Coming Soon!)**
+* Deprecate AIDL communication, not suited to the needs, replaced with simple file data. 
+* Improved Example App, new version 1.1.
+* Improved Shortcuts view, fixed bug.
+* Added class `RemoteShortcuts`
+    * Method  `static void saveRemoteShortcuts(Activity activity, String packageName, ArrayList<Shortcuts> listOfShortcuts)` for save shortcuts and make accessible on library.
+    * Method `static ArrayList<Shortcuts> getRemoteShortcuts(Activity activity, String packageName)` to get shortcuts from library.
+    * Method `static void checkPermission(Activity activity)` for check WRITE_EXTERNAL_STORAGE permission on Android M and above.
+    * Method `static void requestPermission(Activity activity)` for request permission to user.
+* Update class `Shortcuts`
+    * Added constructor `Shortcuts(Bitmap shortcutsImage, String shortcutsText)`
+    * Added constructor `Shortcuts(int shortcutsImage, String shortcutsText, String targetClass, String targetPackage)` only for remote use.
+    * Added constructor `Shortcuts(Bitmap shortcutsImage, String shortcutsText, String targetClass, String targetPackage)` only for remote use.
+    * Added constructor `Shortcuts(int shortcutsImage, String shortcutsText, View.OnClickListener onShortcutsClickListener, View.OnClickListener onShortcutsOptionClickListener)`
+    * Added getter `View.OnClickListener getOnShortcutsOptionClickListener()`
+    * Added getter `Bitmap getShortcutsImageBitmap()`
+    * Added getter `String getTargetPackage()`
+    * Added getter `String getTargetClass()`
+* Update class `Utils`
+    * Added method `static void createShortcutsOnLauncher(Activity activity, Bitmap shortcutsImage, String shortcutsText, String className, String packageName)` for create shortcuts when user click on right menù (option menù)
+
 **v1.0.0**
 * Improved Example App, soon relased on Google Play
-* Added class `ShortcutsService` that create remote connection and use AIDL to communicate with launcher, soon all developers will only implement shortcuts layout, then it's up to developer to implement their own shortcuts, like google!!!
+* ~~Added class `ShortcutsService` that create remote connection and use AIDL to communicate with launcher, soon all developers will only implement shortcuts layout, then it's up to developer to implement their own shortcuts, like google!!!~~
 * Improved animation, almost equal to the Pixels Launcher.
 * Added 2 style right menù of shortcuts (see int optionLayoutStyle) 
 * Added click shadow on shortcuts.
-* Added AIDL interface `IRemoteShortcutClickListener`
-    * Method `void onShortcutsClickListener()` when user click on shortcuts
-    * Method `void onShortcutsOptionClickListener()` when user click on right menù
-* Added AIDL interface `IRemoteShortcutService`
-    * Method `void addShortcutsWithRemoteClickListener(int shortcutsImage, String shortcutsText, IRemoteShortcutClickListener onShortcutsClickListener)`
-    * Method `void addShortcuts(int shortcutsImage, String shortcutsText)`
-    * Method `List<Shortcuts> getShortcuts()`
-* Added AIDL interface `Shortcuts` provide parcelable Shortcuts
-* Added class `RemoteServiceConnection`
-    * Public constructor `RemoteServiceConnection(Activity activity, List<Shortcuts> shortcuts)`
-    * Public constructor `RemoteServiceConnection(Activity activity, Shortcuts... shortcuts)`
-    * Public method `boolean connectServiceAndVerifyConnection(RemoteServiceConnection serviceConnection)` to bind service and return boolean to check if is connected.
-    * Public method  `void connectService(RemoteServiceConnection serviceConnection)` to bind service.
-    * Public method `IRemoteShortcutService getService()` to retreive service.
-* Added class `ShortcutsService` to create service
+* ~~Added AIDL interface `IRemoteShortcutClickListener`~~
+    * ~~Method `void onShortcutsClickListener()` when user click on shortcuts~~
+    * ~~Method `void onShortcutsOptionClickListener()` when user click on right menù~~
+* ~~Added AIDL interface `IRemoteShortcutService`~~
+    * ~~Method `void addShortcutsWithRemoteClickListener(int shortcutsImage, String shortcutsText, IRemoteShortcutClickListener onShortcutsClickListener)`~~
+    * ~~Method `void addShortcuts(int shortcutsImage, String shortcutsText)`~~
+    * ~~Method `List<Shortcuts> getShortcuts()`~~
+* ~~Added AIDL interface `Shortcuts` provide parcelable Shortcuts~~
+* ~~Added class `RemoteServiceConnection`~~
+    * ~~Public constructor `RemoteServiceConnection(Activity activity, List<Shortcuts> shortcuts)`~~
+    * ~~Public constructor `RemoteServiceConnection(Activity activity, Shortcuts... shortcuts)`~~
+    * ~~Public method `boolean connectServiceAndVerifyConnection(RemoteServiceConnection serviceConnection)` to bind service and return boolean to check if is connected.~~
+    * ~~Public method  `void connectService(RemoteServiceConnection serviceConnection)` to bind service.~~
+    * ~~Public method `IRemoteShortcutService getService()` to retreive service.~~
+* ~~Added class `ShortcutsService` to create service~~
 * Update class `Shortcuts`
-    * Added constructor `Shortcuts(int shortcutsImage, String shortcutsText, final IRemoteShortcutClickListener onIRemoteShortcutsClickListener)`
+    * ~~Added constructor `Shortcuts(int shortcutsImage, String shortcutsText, final IRemoteShortcutClickListener onIRemoteShortcutsClickListener)`~~
     * Added method `int getShortcutsImage()`
     * Added method `String getShortcutsText()`
-    * Added method `IRemoteShortcutClickListener getOnIRemoteShortcutsClickListener()`
+    * ~~Added method `IRemoteShortcutClickListener getOnIRemoteShortcutsClickListener()`~~
     * Added method `View.OnClickListener getOnShortcutsClickListener()`
-    * Update class to `Parcelable` for AIDL communication.
+    * ~~Update class to `Parcelable` for AIDL communication.~~
 * Update class `ShortcutsCreation`
     * Added private method `void createShortcutsBasedOnGridSize(int currentXPosition, int currentYPosition, int rowHeight, GridSize gridSize, List<Shortcuts> shortcuts)`
     * Update method `void createShortcutsBasedOnGridSize(int currentXPosition, int currentYPosition, int rowHeight, GridSize gridSize, int optionLayoutStyle, List<Shortcuts> shortcuts)`
