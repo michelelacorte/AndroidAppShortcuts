@@ -97,6 +97,14 @@ Android API 14+
 
 ##CHANGELOG
 
+**v1.2.0 (Coming Soon!)**
+* Update class `ShortcutsCreation` layout bug fixed, now support device screen resolution 1440x2560, 1080x1920.
+* Added class `StyleOption`, contains static int for menù option layout.
+* Added 1 style right menù of shortcuts (see int optionLayoutStyle or StyleOption class).
+* Code style improvement by codacy.
+* Fixed crash on Example App when click outside of GridView.
+* Fixed crash when `OnShortcutsOptionClickListener` isn't defined (local shortcuts mode).
+
 **v1.1.0**
 * Deprecate AIDL communication, not suited to the needs, replaced with simple file data. 
 * Improved Example App, new version 1.1.
