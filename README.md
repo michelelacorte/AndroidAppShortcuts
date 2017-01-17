@@ -41,13 +41,15 @@ This project needs you! If you would like to support this project's further deve
 Of course, you can also choose what you want to donate, all donations are awesome!!
 
 <img align="left" src="https://s23.postimg.org/m2d28wraj/ic_launcher.png">
-#v1.1.0 Preview
+#v1.2.0 Preview
+
+<h1 align="center"><img src="https://s30.postimg.org/oancibrz5/Screenshot_2017_01_17_18_17_54.png"/></h1>
+
+##v1.1.0 Preview
 
 <h1 align="center"><img src="http://i.giphy.com/26gYBk8pQxudwwWQw.gif"/></h1>
 
-##v1.0.0 Preview
-
-<h1 align="center"><img src="http://i.giphy.com/l3vR814bxMIwQveiA.gif"/></h1>
+##v1.0.0 Preview [Click Here](http://i.giphy.com/l3vR814bxMIwQveiA.gif)
 
 ##v0.2.0 Preview [Click Here](http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif)
 
@@ -76,7 +78,7 @@ allprojects {
 Than add this dependencies
 
 ```groovy
-compile 'com.github.michelelacorte:AndroidShortcuts:1.1.0'
+compile 'com.github.michelelacorte:AndroidShortcuts:1.2.0'
 ```
 ##DOCUMENTATION 
 
@@ -97,7 +99,7 @@ Android API 14+
 
 ##CHANGELOG
 
-**v1.2.0 (Coming Soon!)**
+**v1.2.0**
 * Update class `ShortcutsCreation` layout bug fixed, now support device screen resolution:
     * 1440x2560 (Portrait).
     * 1080x1920 (Portrait).
