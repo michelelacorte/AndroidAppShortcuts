@@ -78,7 +78,7 @@ allprojects {
 Than add this dependencies
 
 ```groovy
-compile 'com.github.michelelacorte:AndroidShortcuts:1.2.0'
+   compile 'com.github.michelelacorte:AndroidAppShortcuts:1.2.0'
 ```
 ##DOCUMENTATION 
 
