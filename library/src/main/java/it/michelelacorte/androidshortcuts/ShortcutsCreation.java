@@ -40,8 +40,8 @@ public class ShortcutsCreation {
     private float displayDensity;
 
     private int toolbarHeight;
-    private final int DIM_WIDTH = 840;
-    private final int DIM_HEIGHT = 200;
+    private int DIM_WIDTH = 840;
+    private int DIM_HEIGHT = 200;
 
     /**
      * Public constructor for adapt shortcuts to layout
@@ -127,7 +127,25 @@ public class ShortcutsCreation {
 
         if(layout != null || triangle != null)
             clearAllLayout();
-        if (true/*isClickOnItem(currentXPosition, currentYPosition, gridSize)*/) {
+        switch (maxXScreen){
+            case 720:
+                DIM_WIDTH = 360;
+                DIM_HEIGHT = 90;
+                break;
+            case 1080:
+                DIM_WIDTH = 640;
+                DIM_HEIGHT = 150;
+                break;
+            case 1440:
+                DIM_WIDTH = 840;
+                DIM_HEIGHT = 200;
+                break;
+            default:
+                Log.e(TAG, "Resolution of screen not supported!");
+                break;
+        }
+
+        if (isClickOnItem(currentXPosition, currentYPosition, gridSize)) {
             LayoutInflater inflater = LayoutInflater.from(context);
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(DIM_WIDTH, DIM_HEIGHT);
             RelativeLayout.LayoutParams paramsTriangle = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -151,7 +169,7 @@ public class ShortcutsCreation {
             for (int i = 0; i < shortcuts.size(); i++) {
                 layout[i] = (RelativeLayout) inflater.inflate(R.layout.shortcuts, null, false);
                 shortcuts.get(i).init(layout[i], optionLayoutStyle, activity);
-                if ((dim + DIM_WIDTH) > maxXScreen) {
+                if ((dim + DIM_WIDTH) >= maxXScreen) {
                     //Destra
                     layout[i].setX(dim - DIM_WIDTH + (mIconWidth) - mIconWidth / 4);
                     triangle.setX((float) (dim + mIconWidth - mIconWidth / 1.5));
@@ -179,24 +197,72 @@ public class ShortcutsCreation {
                     mIconHeight = Math.round(displayDensity * rowHeight) * positionInGrid + 1;
                     if (mIconHeight + layoutHeightTotal > maxYScreenWithToolbar) {
                         //Alto
-                        if (i >= 1) {
-                            layout[i].setY(+layoutHeightTotal + mIconHeight / 5 - 220 + toolbarHeight * 2);
-                        } else {
-                            layout[i].setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2);
+                        switch (maxXScreen){
+                            case 720:
+                                if (i >= 1) {
+                                    layout[i].setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2 - 75);
+                                } else {
+                                    layout[i].setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2 + 20);
+                                }
+                                triangle.setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2 + 94);
+                                triangle.setRotation(0);
+                                break;
+                            case 1080:
+                                if (i >= 1) {
+                                    layout[i].setY(+layoutHeightTotal + mIconHeight / 5 - 160 + toolbarHeight * 2);
+                                } else {
+                                    layout[i].setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2);
+                                }
+                                triangle.setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2 + 120);
+                                triangle.setRotation(0);
+                                break;
+                            case 1440:
+                                if (i >= 1) {
+                                    layout[i].setY(+layoutHeightTotal + mIconHeight / 5 - 220 + toolbarHeight * 2);
+                                } else {
+                                    layout[i].setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2);
+                                }
+                                triangle.setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2 + 160);
+                                triangle.setRotation(0);
+                                break;
+                            default:
+                                Log.e(TAG, "Resolution of screen not supported!");
+                                break;
                         }
-                        triangle.setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2 + 160);
-                        triangle.setRotation(0);
                     } else {
                         //Basso
                         positionInGrid = ((GridView) gridView).pointToPosition((int) currentXPosition, (int) currentYPosition);
                         positionInGrid /= gridSize.getColumnCount();
                         mIconHeight = Math.round(displayDensity * rowHeight) * positionInGrid + 1;
-                        if (i >= 1) {
-                            layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2 - 220);
-                        } else {
-                            layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2);
+                        switch (maxXScreen){
+                            case 720:
+                                if (i >= 1) {
+                                    layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2 - 120);
+                                } else {
+                                    layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2 - 20);
+                                }
+                                triangle.setY((float) (+mIconHeight * 3 / 4 + layoutHeightTotal * i - toolbarHeight + 30));
+                                break;
+                            case 1080:
+                                if (i >= 1) {
+                                    layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2 - 160);
+                                } else {
+                                    layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2);
+                                }
+                                triangle.setY((float) (+mIconHeight * 3 / 4 + layoutHeightTotal * i - toolbarHeight + 60));
+                                break;
+                            case 1440:
+                                if (i >= 1) {
+                                    layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2 - 220);
+                                } else {
+                                    layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2);
+                                }
+                                triangle.setY((float) (+mIconHeight * 3 / 4 + layoutHeightTotal * i - toolbarHeight + 80));
+                                break;
+                            default:
+                                Log.e(TAG, "Resolution of screen not supported!");
+                                break;
                         }
-                        triangle.setY((float) (+mIconHeight * 3 / 4 + layoutHeightTotal * i - toolbarHeight + 80));
                     }
                 } else {
                     //TODO: Layout without Toolbar
@@ -221,6 +287,25 @@ public class ShortcutsCreation {
 
         if(layout != null || triangle != null)
             clearAllLayout();
+
+        switch (maxXScreen){
+            case 720:
+                DIM_WIDTH = 360;
+                DIM_HEIGHT = 90;
+                break;
+            case 1080:
+                DIM_WIDTH = 640;
+                DIM_HEIGHT = 150;
+                break;
+            case 1440:
+                DIM_WIDTH = 840;
+                DIM_HEIGHT = 200;
+                break;
+            default:
+                Log.e(TAG, "Resolution of screen not supported!");
+                break;
+        }
+
         if (isClickOnItem(currentXPosition, currentYPosition, gridSize)) {
             LayoutInflater inflater = LayoutInflater.from(context);
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(DIM_WIDTH, DIM_HEIGHT);
@@ -245,7 +330,7 @@ public class ShortcutsCreation {
             for (int i = 0; i < shortcuts.length; i++) {
                 layout[i] = (RelativeLayout) inflater.inflate(R.layout.shortcuts, null, false);
                 shortcuts[i].init(layout[i], optionLayoutStyle, activity);
-                if ((dim + DIM_WIDTH) > maxXScreen) {
+                if ((dim + DIM_WIDTH) >= maxXScreen) {
                     //Destra
                     layout[i].setX(dim - DIM_WIDTH + (mIconWidth) - mIconWidth / 4);
                     triangle.setX((float) (dim + mIconWidth - mIconWidth / 1.5));
@@ -256,7 +341,6 @@ public class ShortcutsCreation {
                     triangle.startAnimation(animationRightToLeft);
                 } else {
                     //Sinistra
-
                     layout[i].setX(dim + mIconWidth / 4);
                     triangle.setX((float) (dim + mIconWidth / 2));
                     triangle.setRotation(180);
@@ -273,24 +357,72 @@ public class ShortcutsCreation {
                     mIconHeight = Math.round(displayDensity * rowHeight) * positionInGrid + 1;
                     if (mIconHeight + layoutHeightTotal > maxYScreenWithToolbar) {
                         //Alto
-                        if (i >= 1) {
-                            layout[i].setY(+layoutHeightTotal + mIconHeight / 5 - 220 + toolbarHeight * 2);
-                        } else {
-                            layout[i].setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2);
+                        switch (maxXScreen){
+                            case 720:
+                                if (i >= 1) {
+                                    layout[i].setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2 - 75);
+                                } else {
+                                    layout[i].setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2 + 20);
+                                }
+                                triangle.setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2 + 94);
+                                triangle.setRotation(0);
+                                break;
+                            case 1080:
+                                if (i >= 1) {
+                                    layout[i].setY(+layoutHeightTotal + mIconHeight / 5 - 160 + toolbarHeight * 2);
+                                } else {
+                                    layout[i].setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2);
+                                }
+                                triangle.setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2 + 120);
+                                triangle.setRotation(0);
+                                break;
+                            case 1440:
+                                if (i >= 1) {
+                                    layout[i].setY(+layoutHeightTotal + mIconHeight / 5 - 220 + toolbarHeight * 2);
+                                } else {
+                                    layout[i].setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2);
+                                }
+                                triangle.setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2 + 160);
+                                triangle.setRotation(0);
+                                break;
+                            default:
+                                Log.e(TAG, "Resolution of screen not supported!");
+                                break;
                         }
-                        triangle.setY(+layoutHeightTotal + mIconHeight / 5 + toolbarHeight * 2 + 160);
-                        triangle.setRotation(0);
                     } else {
                         //Basso
                         positionInGrid = ((GridView) gridView).pointToPosition((int) currentXPosition, (int) currentYPosition);
                         positionInGrid /= gridSize.getColumnCount();
                         mIconHeight = Math.round(displayDensity * rowHeight) * positionInGrid + 1;
-                        if (i >= 1) {
-                            layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2 - 220);
-                        } else {
-                            layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2);
+                        switch (maxXScreen){
+                            case 720:
+                                if (i >= 1) {
+                                    layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2 - 120);
+                                } else {
+                                    layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2 - 20);
+                                }
+                                triangle.setY((float) (+mIconHeight * 3 / 4 + layoutHeightTotal * i - toolbarHeight + 30));
+                                break;
+                            case 1080:
+                                if (i >= 1) {
+                                    layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2 - 160);
+                                } else {
+                                    layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2);
+                                }
+                                triangle.setY((float) (+mIconHeight * 3 / 4 + layoutHeightTotal * i - toolbarHeight + 60));
+                                break;
+                            case 1440:
+                                if (i >= 1) {
+                                    layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2 - 220);
+                                } else {
+                                    layout[i].setY(+mIconHeight * 3 / 4 + layoutHeightTotal + toolbarHeight / 2);
+                                }
+                                triangle.setY((float) (+mIconHeight * 3 / 4 + layoutHeightTotal * i - toolbarHeight + 80));
+                                break;
+                            default:
+                                Log.e(TAG, "Resolution of screen not supported!");
+                                break;
                         }
-                        triangle.setY((float) (+mIconHeight * 3 / 4 + layoutHeightTotal * i - toolbarHeight + 80));
                     }
                 } else {
                     //TODO: Layout without Toolbar
@@ -310,10 +442,7 @@ public class ShortcutsCreation {
      */
     private boolean isClickOnItem(int currentXPosition, int currentYPosition, GridSize gridSize){
         int positionPointed = ((GridView) gridView).pointToPosition(currentXPosition, currentYPosition);
-        if (positionPointed < gridSize.getColumnCount()) {
-             return true;
-        }
-        return false;
+        return positionPointed < gridSize.getColumnCount()*gridSize.getRowCount();
     }
 
     /**
@@ -322,18 +451,15 @@ public class ShortcutsCreation {
     public void clearAllLayout() {
         if(layout != null) {
             for (int i = 0; i < layout.length; i++) {
-                if (layout[i] != null) {
-                    if (((ViewGroup) layout[i].getParent()) != null)
+                if (layout[i] != null && ((ViewGroup) layout[i].getParent()) != null) {
                         ((ViewGroup) layout[i].getParent()).removeView(layout[i]);
                 }
             }
             Log.d(TAG, "Layout clear!");
         }
-        if(triangle != null) {
-            if (((ViewGroup) triangle.getParent()) != null) {
-                ((ViewGroup) triangle.getParent()).removeView(triangle);
-                Log.d(TAG, "Layout clear!");
-            }
+        if(triangle != null && ((ViewGroup) triangle.getParent()) != null) {
+            ((ViewGroup) triangle.getParent()).removeView(triangle);
+            Log.d(TAG, "Layout clear!");
         }
     }
 

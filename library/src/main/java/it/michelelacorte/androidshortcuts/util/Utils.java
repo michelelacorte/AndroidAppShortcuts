@@ -1,9 +1,16 @@
 package it.michelelacorte.androidshortcuts.util;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.util.TypedValue;
 import android.widget.AdapterView;
@@ -56,6 +63,17 @@ public class Utils {
      * @throws ClassNotFoundException
      */
     public static void createShortcutsOnLauncher(Activity activity, Bitmap shortcutsImage, String shortcutsText, String className, String packageName) throws ClassNotFoundException {
+
+        int result = ContextCompat.checkSelfPermission(activity, Manifest.permission.INSTALL_SHORTCUT);
+        if (result != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, android.Manifest.permission.INSTALL_SHORTCUT)) {
+                Log.d(TAG, "Install Shortcuts permission allows us to create shortcuts on launcher. Please allow this permission in App Settings.");
+            } else {
+                ActivityCompat.requestPermissions(activity, new String[]{android.Manifest.permission.INSTALL_SHORTCUT}, 111);
+                Log.d(TAG, "Install Shortcuts permission allows us to create shortcuts on launcher.");
+            }
+        }
+
         Intent shortcutIntent = new Intent(activity.getApplicationContext(), activity.getClass());
         shortcutIntent.setComponent(new ComponentName(
                 packageName, className.replaceAll(packageName, "")));
@@ -70,4 +88,24 @@ public class Utils {
         addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
         activity.getApplicationContext().sendBroadcast(addIntent);
     }
+
+    /**
+     * Convert drawable to bitmap
+     * @param drawable Drawable
+     * @return Bitmap
+     */
+    public static Bitmap convertDrawableToBitmap(Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable) drawable).getBitmap();
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
+                drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
+    }
+
 }

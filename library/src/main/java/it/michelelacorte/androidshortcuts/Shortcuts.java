@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 
+import it.michelelacorte.androidshortcuts.util.StyleOption;
 import it.michelelacorte.androidshortcuts.util.Utils;
 
 /**
@@ -23,18 +26,11 @@ public class Shortcuts implements Serializable{
     private final String TAG = "Shorctus";
     private static final long serialVersionUID = -29238982928391L;
 
-    private ImageView mShortcutsImage;
-    private TextView mShortcutsText;
-    private RelativeLayout mShortcutsParent;
-    private ImageView mShortcutsOptions;
-
     private String shortcutsText;
     private int shortcutsImage;
     private Bitmap shortcutsImageBitmap;
     private String targetClass;
     private String targetPackage;
-
-
 
     private View.OnClickListener onShortcutsClickListener;
     private View.OnClickListener onShortcutsOptionClickListener;
@@ -169,40 +165,45 @@ public class Shortcuts implements Serializable{
      * @param layout View
      */
     public void init(View layout, int optionLayoutStyle, final Activity activity){
-        mShortcutsImage = (ImageView) layout.findViewById(R.id.shortcut_image);
-        mShortcutsText = (TextView) layout.findViewById(R.id.shortcut_text);
-        mShortcutsParent = (RelativeLayout) layout.findViewById(R.id.shortcut_parent);
-        mShortcutsOptions = (ImageView) layout.findViewById(R.id.shortcut_options);
+        ImageView mShortcutsImage = (ImageView) layout.findViewById(R.id.shortcut_image);
+        TextView mShortcutsText = (TextView) layout.findViewById(R.id.shortcut_text);
+        RelativeLayout mShortcutsParent = (RelativeLayout) layout.findViewById(R.id.shortcut_parent);
+        ImageView mShortcutsOptions = (ImageView) layout.findViewById(R.id.shortcut_options);
 
         if(onShortcutsClickListener != null)
             mShortcutsParent.setOnClickListener(onShortcutsClickListener);
 
         if(targetPackage != null && targetClass != null) {
-            mShortcutsParent.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent();
-                    intent.setComponent(new ComponentName(targetPackage, targetClass));
-                    activity.startActivity(intent);
-                }
-            });
+                mShortcutsParent.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent();
+                        intent.setComponent(new ComponentName(targetPackage, targetClass));
+                        activity.startActivity(intent);
+                    }
+                });
         }
 
         if(shortcutsImage != 0)
-        mShortcutsImage.setImageResource(shortcutsImage);
+            mShortcutsImage.setImageResource(shortcutsImage);
         if(shortcutsImageBitmap != null)
-        mShortcutsImage.setImageBitmap(shortcutsImageBitmap);
-
+            mShortcutsImage.setImageBitmap(shortcutsImageBitmap);
         mShortcutsText.setText(shortcutsText);
 
         if(onShortcutsOptionClickListener != null) {
             mShortcutsOptions.setOnClickListener(onShortcutsOptionClickListener);
-        } else {
+        } else if(targetClass != null && targetPackage != null) {
             mShortcutsOptions.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     try {
-                        Utils.createShortcutsOnLauncher(activity, shortcutsImageBitmap, shortcutsText, targetClass, targetPackage);
+                        if(shortcutsImageBitmap != null) {
+                            Utils.createShortcutsOnLauncher(activity, shortcutsImageBitmap, shortcutsText, targetClass, targetPackage);
+                        }else{
+                            Drawable drawable = ContextCompat.getDrawable(activity.getApplicationContext(), shortcutsImage);
+                            Bitmap toBitmap = Utils.convertDrawableToBitmap(drawable);
+                            Utils.createShortcutsOnLauncher(activity, toBitmap, shortcutsText, targetClass, targetPackage);
+                        }
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -211,11 +212,14 @@ public class Shortcuts implements Serializable{
         }
 
         switch (optionLayoutStyle){
-            case 0:
+            case StyleOption.LINE_LAYOUT:
                     mShortcutsOptions.setBackgroundResource(R.drawable.shortcuts_options);
                 break;
-            case 1:
+            case StyleOption.CIRCLE_LAYOUT:
                     mShortcutsOptions.setBackgroundResource(R.drawable.shortcuts_options_2);
+                break;
+            case StyleOption.CIRCLE_LAYOUT_ALTERNATIVE:
+                mShortcutsOptions.setBackgroundResource(R.drawable.shortcuts_options_3);
                 break;
             default:
                     mShortcutsOptions.setBackgroundResource(R.drawable.shortcuts_options);

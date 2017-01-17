@@ -49,7 +49,6 @@ public class RemoteShortcuts {
             File file = new File(Environment.getExternalStorageDirectory() + "/Shortcuts/"+fileName);
             file.getParentFile().mkdirs();
             file.createNewFile();
-            Log.e("TAG", "" +packageName+fileName);
             out = new ObjectOutputStream(new FileOutputStream(file, false));
             for(Shortcuts shortcuts : listOfShortcuts){
                 if(shortcuts.getShortcutsText() != null) {
@@ -61,7 +60,14 @@ public class RemoteShortcuts {
                     final byte[] imageByteArray = stream.toByteArray();
                     out.writeInt(imageByteArray.length);
                     out.write(imageByteArray);
-                }if(shortcuts.getTargetPackage() != null && shortcuts.getTargetClass() != null){
+                }else if (shortcuts.getShortcutsImageBitmap() != null){
+                    final ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    shortcuts.getShortcutsImageBitmap().compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    final byte[] imageByteArray = stream.toByteArray();
+                    out.writeInt(imageByteArray.length);
+                    out.write(imageByteArray);
+                }
+                if(shortcuts.getTargetPackage() != null && shortcuts.getTargetClass() != null){
                     out.writeUTF(shortcuts.getTargetPackage());
                     out.writeUTF(shortcuts.getTargetClass());
                 }else{

@@ -1,5 +1,7 @@
 package it.michelelacorte.androidshortcuts.util;
 
+import android.util.Log;
+
 /**
  * Created by Michele on 09/12/2016.
  */
@@ -19,6 +21,7 @@ public class GridSize{
     public GridSize(int nColumn, int nRow){
         this.nColumn = nColumn;
         this.nRow = nRow;
+        Log.d(TAG, "GridSize created!");
     }
 
     /**

@@ -30,15 +30,16 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
 import it.michelelacorte.androidshortcuts.RemoteShortcuts;
 import it.michelelacorte.androidshortcuts.Shortcuts;
 import it.michelelacorte.androidshortcuts.ShortcutsCreation;
+import it.michelelacorte.androidshortcuts.util.StyleOption;
+
 
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
     private AdapterView gridView;
-    private RelativeLayout activityParent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +48,15 @@ public class MainActivity extends AppCompatActivity {
 
         //Example of remote shortcuts
         ArrayList<Shortcuts> listOfShortcuts = new ArrayList<>();
-        listOfShortcuts.add(new Shortcuts(R.mipmap.ic_launcher, "AndroidShortcuts"));
-        listOfShortcuts.add(new Shortcuts(R.mipmap.ic_launcher, "Test Shortcuts", "it.michelelacorte.exampleandroidshortcuts.MainActivity", "it.michelelacorte.exampleandroidshortcuts"));
+
+
+        listOfShortcuts.add(new Shortcuts(R.drawable.ic_done_black_24dp, "AndroidShortcuts"));
+        listOfShortcuts.add(new Shortcuts(R.drawable.ic_code_black_24dp, "Test Shortcuts", "it.michelelacorte.exampleandroidshortcuts.MainActivity", "it.michelelacorte.exampleandroidshortcuts"));
 
         //Call this for save shortcuts and make accessible from library
         RemoteShortcuts.saveRemoteShortcuts(this, this.getPackageName(), listOfShortcuts);
 
-        activityParent = (RelativeLayout) findViewById(R.id.activity_main);
+        RelativeLayout activityParent = (RelativeLayout) findViewById(R.id.activity_main);
 
         gridView = (GridView) findViewById(R.id.gridView);
         final ExampleArrayAdapter exampleArrayAdapter = new ExampleArrayAdapter(this, R.layout.app_grid_item);
@@ -92,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
             public void onLongPress(MotionEvent motionEvent) {
                 shortcutsCreation.clearAllLayout();
                 //Now create shortcuts!
-                /*
-                shortcutsCreation.createShortcuts((int)motionEvent.getX(), (int)motionEvent.getY(), 96,
+/*
+                shortcutsCreation.createShortcuts((int)motionEvent.getX(), (int)motionEvent.getY(), 96, StyleOption.LINE_LAYOUT,
                         new Shortcuts(R.mipmap.ic_launcher, "Shortcuts", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -101,26 +104,34 @@ public class MainActivity extends AppCompatActivity {
                                 shortcutsCreation.clearAllLayout();
                             }
                         }),
-                        new Shortcuts(R.mipmap.ic_launcher, "Nougat!", shortcutsListener));
+                        new Shortcuts(R.mipmap.ic_launcher, "Nougat!","it.michelelacorte.exampleandroidshortcuts.MainActivity", "it.michelelacorte.exampleandroidshortcuts"));
+
                 */
 
                 ArrayList<Shortcuts> listOfShortcuts = new ArrayList<>();
                 int positionPointed = ((GridView) gridView).pointToPosition((int) motionEvent.getX(),  (int) motionEvent.getY());
-                Log.d(TAG, "NAME OF PACK CLICKED: " + ExampleArrayAdapter.pkgAppsList.get(positionPointed).activityInfo.packageName);
+                try {
+                    Log.d(TAG, "NAME OF PACK CLICKED: " + ExampleArrayAdapter.pkgAppsList.get(positionPointed).activityInfo.packageName);
 
-                //Get clicked package name
-                String packageName = ExampleArrayAdapter.pkgAppsList.get(positionPointed).activityInfo.packageName;
+                    //Get clicked package name
+                    String packageName = ExampleArrayAdapter.pkgAppsList.get(positionPointed).activityInfo.packageName;
 
-                //Get shortcuts for this package
-                listOfShortcuts = RemoteShortcuts.getRemoteShortcuts(MainActivity.this, packageName);
+                    //Get shortcuts for this package
+                    listOfShortcuts = RemoteShortcuts.getRemoteShortcuts(MainActivity.this, packageName);
 
-                //If shortcuts are defined, show it!
-                if(listOfShortcuts != null && listOfShortcuts.size() > 0) {
-                        shortcutsCreation.createShortcuts((int) motionEvent.getX(), (int) motionEvent.getY(), 96, 0, listOfShortcuts);
-                }else{
-                    Toast.makeText(MainActivity.this, "App Shortcuts not found for this package!", Toast.LENGTH_SHORT)
+                    //If shortcuts are defined, show it!
+                    if (listOfShortcuts != null && listOfShortcuts.size() > 0) {
+                        shortcutsCreation.createShortcuts((int) motionEvent.getX(), (int) motionEvent.getY(), 96, StyleOption.LINE_LAYOUT, listOfShortcuts);
+                    } else {
+                        Toast.makeText(MainActivity.this, "App Shortcuts not found for this package!", Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                }catch(Exception e){
+                    Toast.makeText(MainActivity.this, "Position Incorrect!", Toast.LENGTH_SHORT)
                             .show();
                 }
+
+
 
             }
 
@@ -157,6 +168,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.about:
                 aboutAlertDialog();
                 break;
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -170,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
                         .setMessage(R.string.disclaimer_dialog_message)
                         .setPositiveButton(getResources().getString(R.string.disclaimer_dialog_ok), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-
+                                dialog.dismiss();
                             }
                         }).create();
         builder.show();
@@ -244,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         static class ViewHolder {
-            ImageView appImage;
-            TextView appText;
+            private ImageView appImage;
+            private TextView appText;
         }
     }
