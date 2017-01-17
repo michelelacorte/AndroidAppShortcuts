@@ -102,7 +102,8 @@ Android API 14+
     * 1440x2560 (Portrait).
     * 1080x1920 (Portrait).
     * 720x1280 (Portrait).
-* Fixed shortcuts constructor with `Bitmap` (remote shortcuts)
+* Fixed shortcuts constructor with `Bitmap` (remote shortcuts).
+* Fixed `mShortcutsOptions` click listener, now auto-convert resource into bitmap and create launcher shortcuts with icon.
 * Added class `StyleOption`, contains static int for menù option layout.
 * Added 1 style right menù of shortcuts (see int optionLayoutStyle or StyleOption class).
 * Code style improvement by codacy.
