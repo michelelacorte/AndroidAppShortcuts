@@ -1,8 +1,9 @@
-<h1 align="center">AndroidShortcuts</h1>
+<h1 align="center">Android App Shortcuts</h1>
 <h2 align="center">Shortcuts for Android on Pre Nougat 7.1!</h2>
 
 <span class="badge-paypal"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=LY7EX8WMWPWV6" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a></span>
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2a8eb532d98842f6966bc164a896419a)](https://www.codacy.com/app/micky1995/AndroidShortcuts?utm_source=github.com&utm_medium=referral&utm_content=michelelacorte/AndroidShortcuts&utm_campaign=badger)
 [![Twitter](https://img.shields.io/badge/Twitter-@LacorteMichele-blue.svg?style=flat)](https://twitter.com/LacorteMichele)
 
 [![API](https://img.shields.io/badge/API-14%2B-yellow.svg?style=flat)](https://android-arsenal.com/api?level=14)
@@ -75,13 +76,13 @@ allprojects {
 Than add this dependencies
 
 ```groovy
-compile 'com.github.michelelacorte:AndroidShortcuts:1.0.0'
+compile 'com.github.michelelacorte:AndroidShortcuts:1.1.0'
 ```
 ##DOCUMENTATION 
 
 - [App Shortcuts Locale](https://github.com/michelelacorte/AndroidShortcuts/blob/master/SHORTCUTSLOCALE.md)
 
-- [App Shortcuts Remote (Coming Soon with v1.1.0)](https://github.com/michelelacorte/AndroidShortcuts/blob/master/SHORTCUTSREMOTE.md)
+- [App Shortcuts Remote](https://github.com/michelelacorte/AndroidShortcuts/blob/master/SHORTCUTSREMOTE.md)
 
 
 Coming soon with [Force Touch](https://github.com/michelelacorte/ForceTouch) implementation
@@ -96,7 +97,20 @@ Android API 14+
 
 ##CHANGELOG
 
-**v1.1.0 (Coming Soon!)**
+**v1.2.0 (Coming Soon!)**
+* Update class `ShortcutsCreation` layout bug fixed, now support device screen resolution:
+    * 1440x2560 (Portrait).
+    * 1080x1920 (Portrait).
+    * 720x1280 (Portrait).
+* Fixed shortcuts constructor with `Bitmap` (remote shortcuts).
+* Fixed `mShortcutsOptions` click listener, now auto-convert resource into bitmap and create launcher shortcuts with icon.
+* Added class `StyleOption`, contains static int for menù option layout.
+* Added 1 style right menù of shortcuts (see int optionLayoutStyle or StyleOption class).
+* Code style improvement by codacy.
+* Fixed crash on Example App when click outside of GridView.
+* Fixed crash when `OnShortcutsOptionClickListener` isn't defined (local shortcuts mode).
+
+**v1.1.0**
 * Deprecate AIDL communication, not suited to the needs, replaced with simple file data. 
 * Improved Example App, new version 1.1.
 * Improved Shortcuts view, fixed bug.
@@ -188,6 +202,8 @@ Android API 14+
 ##CREDITS
 
 Author: Michele Lacorte (micky1995g@gmail.com)
+
+Follow my [Google+](https://plus.google.com/u/0/collection/McidZB)
 
 ##CONTRIBUTING
 
