@@ -98,7 +98,10 @@ Android API 14+
 ##CHANGELOG
 
 **v1.2.0 (Coming Soon!)**
-* Update class `ShortcutsCreation` layout bug fixed, now support device screen resolution 1440x2560, 1080x1920.
+* Update class `ShortcutsCreation` layout bug fixed, now support device screen resolution:
+    * 1440x2560 (Portrait).
+    * 1080x1920 (Portrait).
+    * 720x1280 (Portrait).
 * Added class `StyleOption`, contains static int for menù option layout.
 * Added 1 style right menù of shortcuts (see int optionLayoutStyle or StyleOption class).
 * Code style improvement by codacy.
