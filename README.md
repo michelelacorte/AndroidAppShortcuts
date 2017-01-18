@@ -61,6 +61,10 @@ Of course, you can also choose what you want to donate, all donations are awesom
 <img alt="Get it on Google Play" src="https://s32.postimg.org/50h5qj4lx/google_play_badge.png" />
 </a>
 
+####Or scan QR Code
+
+![alt tag](https://s27.postimg.org/3pj6l0h2r/Android_App_Shortcuts.png)
+
 ##USAGE
 
 
