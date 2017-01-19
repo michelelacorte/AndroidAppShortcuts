@@ -105,6 +105,7 @@ Android API 14+
 * Fixed numbers of shortcuts at 5
 * Fixed layout issue with numbers of shortcuts >= 2 :
     * 1440x2560 (Portrait). 
+    * 1080x1920 (Portrait).
 
 **v1.2.0**
 * Update class `ShortcutsCreation` layout bug fixed, now support device screen resolution:
