@@ -39,7 +39,13 @@ This project needs you! If you would like to support this project's further deve
 Of course, you can also choose what you want to donate, all donations are awesome!! Follow this link [Donate](https://www.paypal.me/MicheleLacorte)!!
 
 <img align="left" src="https://s23.postimg.org/m2d28wraj/ic_launcher.png">
-#v1.2.0 Preview
+#v1.3.0 Preview (Coming Soon!)
+
+<h1 align="center"><img src="https://s28.postimg.org/9yysm1xgd/Screenshot_2017_01_20_12_45_03.png"/></h1>
+
+<h1 align="center"><img src="http://i.giphy.com/26xBzlNgGvOB8MvBK.gif"/></h1>
+
+##v1.2.0 Preview
 
 <h1 align="center"><img src="https://s30.postimg.org/oancibrz5/Screenshot_2017_01_17_18_17_54.png"/></h1>
 
@@ -102,6 +108,8 @@ Android API 14+
 ##CHANGELOG
 
 **v1.3.0 (Coming Soon!)**
+* Added dynamic colored of shortcuts icon!
+* Update icon in launcher when create shortcuts, Nougat style! See ![alt tag](https://s30.postimg.org/srwgx8koh/Screenshot_2017_01_20_12_45_03.png) 
 * Fixed numbers of shortcuts at 5
 * Fixed layout issue with numbers of shortcuts >= 2 :
     * 1440x2560 (Portrait). 
