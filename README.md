@@ -49,9 +49,7 @@ Of course, you can also choose what you want to donate, all donations are awesom
 
 <h1 align="center"><img src="https://s30.postimg.org/oancibrz5/Screenshot_2017_01_17_18_17_54.png"/></h1>
 
-##v1.1.0 Preview
-
-<h1 align="center"><img src="http://i.giphy.com/26gYBk8pQxudwwWQw.gif"/></h1>
+##v1.1.0 Preview [Click Here](http://i.giphy.com/26gYBk8pQxudwwWQw.gif)
 
 ##v1.0.0 Preview [Click Here](http://i.giphy.com/l3vR814bxMIwQveiA.gif)
 
