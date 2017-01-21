@@ -39,7 +39,7 @@ This project needs you! If you would like to support this project's further deve
 Of course, you can also choose what you want to donate, all donations are awesome!! Follow this link [Donate](https://www.paypal.me/MicheleLacorte)!!
 
 <img align="left" src="https://s23.postimg.org/m2d28wraj/ic_launcher.png">
-#v1.3.0 Preview (Coming Soon!)
+#v1.3.0 Preview
 
 <h1 align="center"><img src="https://s28.postimg.org/9yysm1xgd/Screenshot_2017_01_20_12_45_03.png"/></h1>
 
@@ -84,7 +84,7 @@ allprojects {
 Than add this dependencies
 
 ```groovy
-   compile 'com.github.michelelacorte:AndroidAppShortcuts:1.2.0'
+   compile 'com.github.michelelacorte:AndroidAppShortcuts:1.3.0'
 ```
 ##DOCUMENTATION 
 
@@ -105,7 +105,7 @@ Android API 14+
 
 ##CHANGELOG
 
-**v1.3.0 (Coming Soon!)**
+**v1.3.0**
 * New App version 1.3
 * Added dynamic colored of shortcuts icon!
 * Update icon in launcher when create shortcuts, Nougat style! See ![alt tag](https://s30.postimg.org/srwgx8koh/Screenshot_2017_01_20_12_45_03.png) 
