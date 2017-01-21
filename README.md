@@ -1,8 +1,6 @@
 <h1 align="center">Android App Shortcuts</h1>
 <h2 align="center">Shortcuts for Android on Pre Nougat 7.1!</h2>
 
-<span class="badge-paypal"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=LY7EX8WMWPWV6" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a></span>
-
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2a8eb532d98842f6966bc164a896419a)](https://www.codacy.com/app/micky1995/AndroidShortcuts?utm_source=github.com&utm_medium=referral&utm_content=michelelacorte/AndroidShortcuts&utm_campaign=badger)
 [![Twitter](https://img.shields.io/badge/Twitter-@LacorteMichele-blue.svg?style=flat)](https://twitter.com/LacorteMichele)
 
@@ -14,7 +12,7 @@
 
 ##WHAT IS ANDROID SHORTCUTS?
 
-The shorctus have a features of Android 7.1 Nougat, and available only for the launcher that implement, in this library, you can implement in your launcher shorctus starting from API 14!
+The shorctus have a features of Android 7.1 Nougat, and available only for the launcher that implement, in this library, you can implement in your launcher shortcuts starting from API 14!
 Whit new communication all developers will only implement shortcuts layout (this library), then it's up to developer to implement their own shortcuts, like Google!!!
 I have also implemented [Force Touch](https://github.com/michelelacorte/ForceTouch) and YOU CAN USE ON CUSTOM LAUNCHER WITH SHORTCUTS!!
 
@@ -38,16 +36,22 @@ This project needs you! If you would like to support this project's further deve
 
 * **[Donate $2799]**: Go buddy, buy Macbook Pro for yourself!
 
-Of course, you can also choose what you want to donate, all donations are awesome!!
+Of course, you can also choose what you want to donate, all donations are awesome!! Follow this link [Donate](https://www.paypal.me/MicheleLacorte)!!
 
 <img align="left" src="https://s23.postimg.org/m2d28wraj/ic_launcher.png">
-#v1.1.0 Preview
+#v1.3.0 Preview (Coming Soon!)
 
-<h1 align="center"><img src="http://i.giphy.com/26gYBk8pQxudwwWQw.gif"/></h1>
+<h1 align="center"><img src="https://s28.postimg.org/9yysm1xgd/Screenshot_2017_01_20_12_45_03.png"/></h1>
 
-##v1.0.0 Preview
+<h1 align="center"><img src="http://i.giphy.com/26xBzlNgGvOB8MvBK.gif"/></h1>
 
-<h1 align="center"><img src="http://i.giphy.com/l3vR814bxMIwQveiA.gif"/></h1>
+##v1.2.0 Preview
+
+<h1 align="center"><img src="https://s30.postimg.org/oancibrz5/Screenshot_2017_01_17_18_17_54.png"/></h1>
+
+##v1.1.0 Preview [Click Here](http://i.giphy.com/26gYBk8pQxudwwWQw.gif)
+
+##v1.0.0 Preview [Click Here](http://i.giphy.com/l3vR814bxMIwQveiA.gif)
 
 ##v0.2.0 Preview [Click Here](http://i.giphy.com/3o7TKTplU3uZMUkK4M.gif)
 
@@ -58,6 +62,10 @@ Of course, you can also choose what you want to donate, all donations are awesom
 <a href="https://play.google.com/store/apps/details?id=it.michelelacorte.exampleandroidshortcuts">
 <img alt="Get it on Google Play" src="https://s32.postimg.org/50h5qj4lx/google_play_badge.png" />
 </a>
+
+####Or scan QR Code
+
+![alt tag](https://s27.postimg.org/3pj6l0h2r/Android_App_Shortcuts.png)
 
 ##USAGE
 
@@ -76,7 +84,7 @@ allprojects {
 Than add this dependencies
 
 ```groovy
-compile 'com.github.michelelacorte:AndroidShortcuts:1.1.0'
+   compile 'com.github.michelelacorte:AndroidAppShortcuts:1.2.0'
 ```
 ##DOCUMENTATION 
 
@@ -97,11 +105,25 @@ Android API 14+
 
 ##CHANGELOG
 
-**v1.2.0 (Coming Soon!)**
+**v1.3.0 (Coming Soon!)**
+* New App version 1.3
+* Added dynamic colored of shortcuts icon!
+* Update icon in launcher when create shortcuts, Nougat style! See ![alt tag](https://s30.postimg.org/srwgx8koh/Screenshot_2017_01_20_12_45_03.png) 
+* Fixed numbers of shortcuts at 5
+* Fixed layout issue with numbers of shortcuts >= 2 :
+    * 1440x2560 (Portrait). 
+    * 1080x1920 (Portrait).
+    * 720x1280 (Portrait).
+* Update `ShortcutsCreation` class, introduced:
+    * `static void setPackageImage(Drawable packageImage)` to set package image and create bitmap on launcher shortcuts icon like image above.
+
+**v1.2.0**
 * Update class `ShortcutsCreation` layout bug fixed, now support device screen resolution:
     * 1440x2560 (Portrait).
     * 1080x1920 (Portrait).
     * 720x1280 (Portrait).
+* New App version 1.2
+* Fixed layout with no toolbar padding.
 * Fixed shortcuts constructor with `Bitmap` (remote shortcuts).
 * Fixed `mShortcutsOptions` click listener, now auto-convert resource into bitmap and create launcher shortcuts with icon.
 * Added class `StyleOption`, contains static int for menù option layout.
