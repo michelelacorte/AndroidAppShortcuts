@@ -106,6 +106,7 @@ Android API 14+
 ##CHANGELOG
 
 **v1.3.0 (Coming Soon!)**
+* New App version 1.3
 * Added dynamic colored of shortcuts icon!
 * Update icon in launcher when create shortcuts, Nougat style! See ![alt tag](https://s30.postimg.org/srwgx8koh/Screenshot_2017_01_20_12_45_03.png) 
 * Fixed numbers of shortcuts at 5
@@ -113,12 +114,15 @@ Android API 14+
     * 1440x2560 (Portrait). 
     * 1080x1920 (Portrait).
     * 720x1280 (Portrait).
+* Update `ShortcutsCreation` class, introduced:
+    * `static void setPackageImage(Drawable packageImage)` to set package image and create bitmap on launcher shortcuts icon like image above.
 
 **v1.2.0**
 * Update class `ShortcutsCreation` layout bug fixed, now support device screen resolution:
     * 1440x2560 (Portrait).
     * 1080x1920 (Portrait).
     * 720x1280 (Portrait).
+* New App version 1.2
 * Fixed layout with no toolbar padding.
 * Fixed shortcuts constructor with `Bitmap` (remote shortcuts).
 * Fixed `mShortcutsOptions` click listener, now auto-convert resource into bitmap and create launcher shortcuts with icon.
