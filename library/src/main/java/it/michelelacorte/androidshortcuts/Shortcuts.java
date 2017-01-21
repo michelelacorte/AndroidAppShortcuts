@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -164,7 +165,7 @@ public class Shortcuts implements Serializable{
      * Public method to initializate shortcuts, do not use this!
      * @param layout View
      */
-    public void init(View layout, int optionLayoutStyle, final Activity activity){
+    public void init(View layout, int optionLayoutStyle, final Activity activity, final Drawable packageImage){
         ImageView mShortcutsImage = (ImageView) layout.findViewById(R.id.shortcut_image);
         TextView mShortcutsText = (TextView) layout.findViewById(R.id.shortcut_text);
         RelativeLayout mShortcutsParent = (RelativeLayout) layout.findViewById(R.id.shortcut_parent);
@@ -184,10 +185,33 @@ public class Shortcuts implements Serializable{
                 });
         }
 
-        if(shortcutsImage != 0)
-            mShortcutsImage.setImageResource(shortcutsImage);
-        if(shortcutsImageBitmap != null)
-            mShortcutsImage.setImageBitmap(shortcutsImageBitmap);
+        if(shortcutsImage != 0) {
+            if(packageImage != null) {
+                int color = Utils.getDominantColor(Utils.convertDrawableToBitmap(packageImage));
+                if (color != 0) {
+                    Bitmap shortcutsImageBitmap = BitmapFactory.decodeResource(activity.getResources(), shortcutsImage);
+                    Bitmap coloredBitmap = Utils.setColorOnBitmap(shortcutsImageBitmap, color);
+                    mShortcutsImage.setImageBitmap(coloredBitmap);
+                } else {
+                    mShortcutsImage.setImageResource(shortcutsImage);
+                }
+            }else{
+                mShortcutsImage.setImageResource(shortcutsImage);
+            }
+        }
+        if(shortcutsImageBitmap != null) {
+            if(packageImage != null) {
+                int color = Utils.getDominantColor(Utils.convertDrawableToBitmap(packageImage));
+                if (color != 0) {
+                    Bitmap coloredBitmap = Utils.setColorOnBitmap(shortcutsImageBitmap, color);
+                    mShortcutsImage.setImageBitmap(coloredBitmap);
+                } else {
+                    mShortcutsImage.setImageBitmap(shortcutsImageBitmap);
+                }
+            }else{
+                mShortcutsImage.setImageBitmap(shortcutsImageBitmap);
+            }
+        }
         mShortcutsText.setText(shortcutsText);
 
         if(onShortcutsOptionClickListener != null) {
@@ -198,11 +222,11 @@ public class Shortcuts implements Serializable{
                 public void onClick(View view) {
                     try {
                         if(shortcutsImageBitmap != null) {
-                            Utils.createShortcutsOnLauncher(activity, shortcutsImageBitmap, shortcutsText, targetClass, targetPackage);
+                            Utils.createShortcutsOnLauncher(activity, shortcutsImageBitmap, shortcutsText, targetClass, targetPackage, packageImage);
                         }else{
                             Drawable drawable = ContextCompat.getDrawable(activity.getApplicationContext(), shortcutsImage);
                             Bitmap toBitmap = Utils.convertDrawableToBitmap(drawable);
-                            Utils.createShortcutsOnLauncher(activity, toBitmap, shortcutsText, targetClass, targetPackage);
+                            Utils.createShortcutsOnLauncher(activity, toBitmap, shortcutsText, targetClass, targetPackage, packageImage);
                         }
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();

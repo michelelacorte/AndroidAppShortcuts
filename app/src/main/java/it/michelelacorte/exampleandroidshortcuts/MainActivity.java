@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ import it.michelelacorte.androidshortcuts.util.StyleOption;
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
     private AdapterView gridView;
+    public static Drawable img;
 
 
     @Override
@@ -46,11 +48,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Try to hide toolbar, library works!
+        /*
+        try {
+            getSupportActionBar().hide();
+        }catch(Exception e){}
+        */
+
+
         //Example of remote shortcuts
         ArrayList<Shortcuts> listOfShortcuts = new ArrayList<>();
 
 
         listOfShortcuts.add(new Shortcuts(R.drawable.ic_done_black_24dp, "AndroidShortcuts"));
+        listOfShortcuts.add(new Shortcuts(R.drawable.ic_add_black_24dp, "App Shortcuts"));
         listOfShortcuts.add(new Shortcuts(R.drawable.ic_code_black_24dp, "Test Shortcuts", "it.michelelacorte.exampleandroidshortcuts.MainActivity", "it.michelelacorte.exampleandroidshortcuts"));
 
         //Call this for save shortcuts and make accessible from library
@@ -95,18 +106,25 @@ public class MainActivity extends AppCompatActivity {
             public void onLongPress(MotionEvent motionEvent) {
                 shortcutsCreation.clearAllLayout();
                 //Now create shortcuts!
+                int positionPointed = ((GridView) gridView).pointToPosition((int) motionEvent.getX(),  (int) motionEvent.getY());
+                try {
+                    Drawable packageImage = ExampleArrayAdapter.pkgAppsList.get(positionPointed).activityInfo.loadIcon(getPackageManager());
+                    shortcutsCreation.setPackageImage(packageImage);
+                    shortcutsCreation.createShortcuts((int) motionEvent.getX(), (int) motionEvent.getY(), 96, StyleOption.LINE_LAYOUT,
+                            new Shortcuts(R.drawable.ic_add_black_24dp, "Shortcuts", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Toast.makeText(getApplicationContext(), "Hello Shortcuts!!", Toast.LENGTH_LONG).show();
+                                    shortcutsCreation.clearAllLayout();
+                                }
+                            }),
+                            new Shortcuts(R.drawable.ic_done_black_24dp, "Nougat!", "it.michelelacorte.exampleandroidshortcuts.MainActivity", "it.michelelacorte.exampleandroidshortcuts"),
+                            new Shortcuts(R.drawable.ic_code_black_24dp, "App Shortcuts!", "it.michelelacorte.exampleandroidshortcuts.MainActivity", "it.michelelacorte.exampleandroidshortcuts"));
+                }catch(Exception e) {
+                    Toast.makeText(MainActivity.this, "Position Incorrect!", Toast.LENGTH_SHORT)
+                            .show();
+                }
 /*
-                shortcutsCreation.createShortcuts((int)motionEvent.getX(), (int)motionEvent.getY(), 96, StyleOption.LINE_LAYOUT,
-                        new Shortcuts(R.mipmap.ic_launcher, "Shortcuts", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Toast.makeText(getApplicationContext(), "Hello Shortcuts!!", Toast.LENGTH_LONG).show();
-                                shortcutsCreation.clearAllLayout();
-                            }
-                        }),
-                        new Shortcuts(R.mipmap.ic_launcher, "Nougat!","it.michelelacorte.exampleandroidshortcuts.MainActivity", "it.michelelacorte.exampleandroidshortcuts"));
-
-                */
 
                 ArrayList<Shortcuts> listOfShortcuts = new ArrayList<>();
                 int positionPointed = ((GridView) gridView).pointToPosition((int) motionEvent.getX(),  (int) motionEvent.getY());
@@ -115,12 +133,14 @@ public class MainActivity extends AppCompatActivity {
 
                     //Get clicked package name
                     String packageName = ExampleArrayAdapter.pkgAppsList.get(positionPointed).activityInfo.packageName;
-
+                    //Get package icon
+                    Drawable packageImage = ExampleArrayAdapter.pkgAppsList.get(positionPointed).activityInfo.loadIcon(getPackageManager());
                     //Get shortcuts for this package
                     listOfShortcuts = RemoteShortcuts.getRemoteShortcuts(MainActivity.this, packageName);
 
                     //If shortcuts are defined, show it!
                     if (listOfShortcuts != null && listOfShortcuts.size() > 0) {
+                        shortcutsCreation.setPackageImage(packageImage);
                         shortcutsCreation.createShortcuts((int) motionEvent.getX(), (int) motionEvent.getY(), 96, StyleOption.LINE_LAYOUT, listOfShortcuts);
                     } else {
                         Toast.makeText(MainActivity.this, "App Shortcuts not found for this package!", Toast.LENGTH_SHORT)
@@ -130,8 +150,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Position Incorrect!", Toast.LENGTH_SHORT)
                             .show();
                 }
-
-
+                */
 
             }
 
