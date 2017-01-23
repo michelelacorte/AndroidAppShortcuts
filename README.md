@@ -1,15 +1,14 @@
 <h1 align="center">Android App Shortcuts</h1>
 <h2 align="center">Shortcuts for Android on Pre Nougat 7.1!</h2>
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android%20App%20Shortcuts-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5098)
-
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2a8eb532d98842f6966bc164a896419a)](https://www.codacy.com/app/micky1995/AndroidShortcuts?utm_source=github.com&utm_medium=referral&utm_content=michelelacorte/AndroidShortcuts&utm_campaign=badger)
-[![Twitter](https://img.shields.io/badge/Twitter-@LacorteMichele-blue.svg?style=flat)](https://twitter.com/LacorteMichele)
-
-[![API](https://img.shields.io/badge/API-14%2B-yellow.svg?style=flat)](https://android-arsenal.com/api?level=14)
-
-[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
-
+<p align="center">
+ <a target="_blank" href="https://github.com/michelelacorte/AndroidAppShortcuts"><img src="https://img.shields.io/badge/methods-186-e91e63.svg" /></a>
+ <a target="_blank" href="https://android-arsenal.com/details/1/5098"><img src="https://img.shields.io/badge/Android%20Arsenal-Android%20App%20Shortcuts-brightgreen.svg?style=flat" /></a>
+ <a target="_blank" href="https://www.codacy.com/app/micky1995/AndroidShortcuts?utm_source=github.com&utm_medium=referral&utm_content=michelelacorte/AndroidShortcuts&utm_campaign=badger"><img src="https://api.codacy.com/project/badge/Grade/2a8eb532d98842f6966bc164a896419a" /></a>
+ <a target="_blank" href="https://twitter.com/LacorteMichele"><img src="https://img.shields.io/badge/Twitter-@LacorteMichele-blue.svg?style=flat" /></a>
+ <a target="_blank" href="https://android-arsenal.com/api?level=14"><img src="https://img.shields.io/badge/API-14%2B-yellow.svg?style=flat" /></a>
+ <a target="_blank" href="https://www.apache.org/licenses/LICENSE-2.0.html"><img src="https://img.shields.io/badge/license-Apache%202-4EB1BA.svg" /></a>
+</p>
 
 
 ##WHAT IS ANDROID SHORTCUTS?
