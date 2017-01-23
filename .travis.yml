@@ -1,4 +1,8 @@
 language: android
+android:
+  components:
+    - build-tools-25.1.0
+    - android-25
 
 jdk:
   - oraclejdk8
@@ -7,9 +11,6 @@ sudo: required
 
 before_install:
  - chmod +x gradlew
-
-script:
-  - ./gradlew clean build -i --continue
   
 after_success:
   - bash <(curl -s https://codecov.io/bash) -t a53a2055-7a9e-46cc-a14a-d2cf8a7535d9
