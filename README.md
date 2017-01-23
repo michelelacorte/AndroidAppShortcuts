@@ -3,6 +3,7 @@
 
 <p align="center">
  <a target="_blank" href="https://github.com/michelelacorte/AndroidAppShortcuts"><img src="https://img.shields.io/badge/methods-186-e91e63.svg" /></a>
+  <a target="_blank" href="https://travis-ci.org/michelelacorte/AndroidAppShortcuts"><img src="https://travis-ci.org/michelelacorte/AndroidAppShortcuts.svg?branch=master" /></a>
  <a target="_blank" href="https://android-arsenal.com/details/1/5098"><img src="https://img.shields.io/badge/Android%20Arsenal-Android%20App%20Shortcuts-brightgreen.svg?style=flat" /></a>
  <a target="_blank" href="https://www.codacy.com/app/micky1995/AndroidShortcuts?utm_source=github.com&utm_medium=referral&utm_content=michelelacorte/AndroidShortcuts&utm_campaign=badger"><img src="https://api.codacy.com/project/badge/Grade/2a8eb532d98842f6966bc164a896419a" /></a>
  <a target="_blank" href="https://twitter.com/LacorteMichele"><img src="https://img.shields.io/badge/Twitter-@LacorteMichele-blue.svg?style=flat" /></a>
