@@ -1,10 +1,22 @@
 language: java
 
-before_install:
- - chmod +x gradlew
-
 jdk:
   - oraclejdk8
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -t a53a2055-7a9e-46cc-a14a-d2cf8a7535d9
+
+android:
+  components:
+    # Update Android SDK Tools
+    - tools
+
+    - build-tools-25.0.1
+    - android-25
+
+    # Support library
+    - extra-android-support
+    - extra-android-m2repository
+    
+script:
+    - chmod +x ./gradlew
