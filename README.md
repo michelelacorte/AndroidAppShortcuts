@@ -1,4 +1,4 @@
-<p align="center"><a target="_blank" href="https://github.com/michelelacorte/AndroidAppShortcuts"><img src="https://s29.postimg.org/4hkdt7lw7/banner_Resize.png" /></a></p>
+<p align="center"><a target="_blank" href="https://github.com/michelelacorte/AndroidAppShortcuts"><img src="https://s28.postimg.org/n7mnk9ivh/banner_Resize.png" /></a></p>
 
 <h2 align="center">Shortcuts for Android on Pre Nougat 7.1!</h2>
 
