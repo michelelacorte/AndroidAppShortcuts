@@ -3,6 +3,7 @@
 <h2 align="center">Shortcuts for Android on Pre Nougat 7.1!</h2>
 
 <p align="center">
+ <a target="_blank" href="https://gratipay.com/AndroidAppShortcuts/"><img src="https://img.shields.io/gratipay/michelelacorte/dougwilson.svg" /></a>
  <a target="_blank" href="https://github.com/michelelacorte/AndroidAppShortcuts"><img src="https://img.shields.io/badge/methods-186-e91e63.svg" /></a>
   <a target="_blank" href="https://travis-ci.org/michelelacorte/AndroidAppShortcuts"><img src="https://travis-ci.org/michelelacorte/AndroidAppShortcuts.svg?branch=master" /></a>
  <a target="_blank" href="https://android-arsenal.com/details/1/5098"><img src="https://img.shields.io/badge/Android%20Arsenal-Android%20App%20Shortcuts-brightgreen.svg?style=flat" /></a>
