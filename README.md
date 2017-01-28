@@ -46,6 +46,8 @@ This project needs you! If you would like to support this project's further deve
 
 Of course, you can also choose what you want to donate, all donations are awesome!! Follow this link [Donate](https://www.paypal.me/MicheleLacorte)!!
 
+If you want to contribute you may download [Donation App](https://play.google.com/store/apps/details?id=it.michelelacorte.githubdonation) from Google Play
+
 <img align="left" src="https://s23.postimg.org/m2d28wraj/ic_launcher.png">
 #v1.3.0 Preview
 
@@ -70,6 +72,13 @@ Of course, you can also choose what you want to donate, all donations are awesom
 <a href="https://play.google.com/store/apps/details?id=it.michelelacorte.exampleandroidshortcuts">
 <img alt="Get it on Google Play" src="https://s32.postimg.org/50h5qj4lx/google_play_badge.png" />
 </a>
+
+####If you want to help me please download Donation App!!
+
+<a href="https://play.google.com/store/apps/details?id=it.michelelacorte.githubdonation">
+<img alt="Get it on Google Play" src="https://s32.postimg.org/50h5qj4lx/google_play_badge.png" />
+</a>
+
 
 ####Or scan QR Code
 
