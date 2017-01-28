@@ -122,6 +122,13 @@ Android API 14+
 
 ##CHANGELOG
 
+**v1.4.0 (Coming Soon!)**
+* Added support to API 25 App Shortcuts, now app can use [Google implementation method](https://developer.android.com/guide/topics/ui/shortcuts.html), but is compatible from API 25
+* Fixed `onShortcutsOptionClickListener`, now remove view parent on click
+* Update class `RemoteShortcuts`
+	* Update static void `saveRemoteShortcuts(Activity activity, ArrayList<Shortcuts> listOfShortcuts)` removed unecessary packageName string from method
+
+
 **v1.3.0**
 * New App version 1.3
 * Added dynamic colored of shortcuts icon!
