@@ -20,8 +20,9 @@ ___
 
 ##WHAT IS ANDROID SHORTCUTS?
 
-The shorctus have a features of Android 7.1 Nougat, and available only for the launcher that implement, in this library, you can implement in your launcher shortcuts starting from API 14!
-Whit new communication all developers will only implement shortcuts layout (this library), then it's up to developer to implement their own shortcuts, like Google!!!
+The Android App Shortcuts Library have features of Android 7.1 Nougat, you can implement in your launcher shortcuts starting from API 14!
+With new communication all developers will only implement shortcuts layout (this library), then it's up to developer to implement their own shortcuts, like Google!!!
+In version 1.4.0 library can get shortcuts from app which have API 25 and [Static or Dynamic shortcuts](https://developer.android.com/guide/topics/ui/shortcuts.html) implementation
 I have also implemented [Force Touch](https://github.com/michelelacorte/ForceTouch) and YOU CAN USE ON CUSTOM LAUNCHER WITH SHORTCUTS!!
 
 ##DONATIONS
