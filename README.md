@@ -49,15 +49,17 @@ Of course, you can also choose what you want to donate, all donations are awesom
 If you want to contribute you may download [Donation App](https://play.google.com/store/apps/details?id=it.michelelacorte.githubdonation) from Google Play
 
 <img align="left" src="https://s23.postimg.org/m2d28wraj/ic_launcher.png">
-#v1.3.0 Preview
+#v1.4.0 Preview (Coming Soon!)
+
+<h1 align="center"><img src="https://s28.postimg.org/dgi12bky5/preview14_Copia_framed_1.png"/></h1>
+
+##v1.3.0 Preview
 
 <h1 align="center"><img src="https://s28.postimg.org/9yysm1xgd/Screenshot_2017_01_20_12_45_03.png"/></h1>
 
 <h1 align="center"><img src="http://i.giphy.com/26xBzlNgGvOB8MvBK.gif"/></h1>
 
-##v1.2.0 Preview
-
-<h1 align="center"><img src="https://s30.postimg.org/oancibrz5/Screenshot_2017_01_17_18_17_54.png"/></h1>
+##v1.2.0 Preview [Click Here](https://s30.postimg.org/oancibrz5/Screenshot_2017_01_17_18_17_54.png)
 
 ##v1.1.0 Preview [Click Here](http://i.giphy.com/26gYBk8pQxudwwWQw.gif)
 
