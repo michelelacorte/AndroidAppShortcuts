@@ -127,10 +127,19 @@ Android API 14+
 ##CHANGELOG
 
 **v1.4.0 (Coming Soon!)**
-* Added support to API 25 App Shortcuts, now app can use [Google implementation method](https://developer.android.com/guide/topics/ui/shortcuts.html), but is compatible from API 25
-* Fixed `onShortcutsOptionClickListener`, now remove view parent on click
+* Fully support to API 25 App Shortcuts, now app can use [Google implementation method](https://developer.android.com/guide/topics/ui/shortcuts.html)!!!
+* Fixed `onShortcutsOptionClickListener`, now remove view parent on click.
 * Update class `RemoteShortcuts`
-	* Update static void `saveRemoteShortcuts(Activity activity, ArrayList<Shortcuts> listOfShortcuts)` removed unecessary packageName string from method
+	* Added static method `ArrayList<Shortcuts> getRemoteShortcutsOnAPI25(Activity activity, String targetPackageName, int uid) throws Exception` this method get shortcuts defined in API 25, with [Google SDK](https://developer.android.com/guide/topics/ui/shortcuts.html).
+	* Update static void `saveRemoteShortcuts(Activity activity, ArrayList<Shortcuts> listOfShortcuts)` removed unecessary packageName string from method.
+* Update class `Shortcuts`
+	* Added constructor for API 25 `Shortcuts(Bitmap shortcutsImage, Bitmap shortcutsImageBadge, String shortcutsText, String targetClass, String targetPackage, int rank)`.
+	* Added getter (API 25) `Bitmap getShortcutsImageBadgeBitmap()`.
+	* Added getter (API 25) `int getRank()`.
+	* Increase `MAX_CHAR_SHORTCUTS` from 16 to 20.
+* Update class `Utils`
+	* Added method (API 25) `static Bitmap getRoundedBitmapForAPI25(Bitmap bitmap, Drawable packageImage)` for get launcher icon with badge and shadow.
+* Fixed some method issue.
 
 
 **v1.3.0**
