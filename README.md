@@ -7,6 +7,7 @@
  <a target="_blank" href="https://gratipay.com/AndroidAppShortcuts/"><img src="https://img.shields.io/gratipay/michelelacorte/dougwilson.svg" /></a>
  <a target="_blank" href="https://github.com/michelelacorte/AndroidAppShortcuts"><img src="https://img.shields.io/badge/methods-186-e91e63.svg" /></a>
   <a target="_blank" href="https://travis-ci.org/michelelacorte/AndroidAppShortcuts"><img src="https://travis-ci.org/michelelacorte/AndroidAppShortcuts.svg?branch=master" /></a>
+    <a target="_blank" href="https://www.uplabs.com/posts/androidshortcuts"><img src="https://img.shields.io/badge/MaterialUp-AndroidShortcuts-blue.svg?style=true" /></a>
  <a target="_blank" href="https://android-arsenal.com/details/1/5098"><img src="https://img.shields.io/badge/Android%20Arsenal-Android%20App%20Shortcuts-brightgreen.svg?style=flat" /></a>
   <a target="_blank" href="http://www.android-gems.com/lib/michelelacorte/AndroidAppShortcuts?lib_id=1507"><img src="http://www.android-gems.com/badge/michelelacorte/AndroidAppShortcuts.svg" /></a>
  <a target="_blank" href="https://www.codacy.com/app/micky1995/AndroidShortcuts?utm_source=github.com&utm_medium=referral&utm_content=michelelacorte/AndroidShortcuts&utm_campaign=badger"><img src="https://api.codacy.com/project/badge/Grade/2a8eb532d98842f6966bc164a896419a" /></a>
