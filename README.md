@@ -128,6 +128,7 @@ Android API 14+
 
 **v1.4.0 (Coming Soon!)**
 * Fully support to API 25 App Shortcuts, now app can use [Google implementation method](https://developer.android.com/guide/topics/ui/shortcuts.html)!!!
+* New App version 1.4 with some fix, background changed to bring out the Shortcuts.
 * Fixed `onShortcutsOptionClickListener`, now remove view parent on click.
 * Update class `RemoteShortcuts`
 	* Added static method `ArrayList<Shortcuts> getRemoteShortcutsOnAPI25(Activity activity, String targetPackageName, int uid) throws Exception` this method get shortcuts defined in API 25, with [Google SDK](https://developer.android.com/guide/topics/ui/shortcuts.html).
