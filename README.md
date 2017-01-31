@@ -142,6 +142,7 @@ Android API 14+
 * Update class `Utils`
 	* Added method (API 25) `static Bitmap getRoundedBitmapForAPI25(Bitmap bitmap, Drawable packageImage)` for get launcher icon with badge and shadow.
 * Fixed some method issue.
+* Update `buildToolsVersion` and `dependencies`
 
 
 **v1.3.0**
