@@ -52,7 +52,7 @@ Of course, you can also choose what you want to donate, all donations are awesom
 If you want to contribute you may download [Donation App](https://play.google.com/store/apps/details?id=it.michelelacorte.githubdonation) from Google Play
 
 <img align="left" src="https://s23.postimg.org/m2d28wraj/ic_launcher.png">
-#v1.4.0 Preview (Coming Soon!)
+#v1.4.0 Preview
 
 <h1 align="center"><img src="https://s28.postimg.org/dgi12bky5/preview14_Copia_framed_1.png"/></h1>
 
@@ -106,7 +106,7 @@ allprojects {
 Than add this dependencies
 
 ```groovy
-   compile 'com.github.michelelacorte:AndroidAppShortcuts:1.3.0'
+   compile 'com.github.michelelacorte:AndroidAppShortcuts:1.4.0'
 ```
 ##DOCUMENTATION 
 
@@ -127,7 +127,7 @@ Android API 14+
 
 ##CHANGELOG
 
-**v1.4.0 (Coming Soon!)**
+**v1.4.0**
 * Fully support to API 25 App Shortcuts, now app can use [Google implementation method](https://developer.android.com/guide/topics/ui/shortcuts.html)!!!
 * New App version 1.4 with some fix, background changed to bring out the Shortcuts.
 * Fixed `onShortcutsOptionClickListener`, now remove view parent on click.
