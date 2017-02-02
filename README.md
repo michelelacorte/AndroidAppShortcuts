@@ -1,19 +1,30 @@
-<h1 align="center">Android App Shortcuts</h1>
+<p align="center"><a target="_blank" href="https://github.com/michelelacorte/AndroidAppShortcuts"><img src="https://s28.postimg.org/n7mnk9ivh/banner_Resize.png" /></a></p>
+
 <h2 align="center">Shortcuts for Android on Pre Nougat 7.1!</h2>
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2a8eb532d98842f6966bc164a896419a)](https://www.codacy.com/app/micky1995/AndroidShortcuts?utm_source=github.com&utm_medium=referral&utm_content=michelelacorte/AndroidShortcuts&utm_campaign=badger)
-[![Twitter](https://img.shields.io/badge/Twitter-@LacorteMichele-blue.svg?style=flat)](https://twitter.com/LacorteMichele)
+<p align="center">
+<a href="https://beerpay.io/michelelacorte/AndroidAppShortcuts"><img src="https://beerpay.io/michelelacorte/AndroidAppShortcuts/badge.svg?style=flat" /></a>
+ <a target="_blank" href="https://gratipay.com/AndroidAppShortcuts/"><img src="https://img.shields.io/gratipay/michelelacorte/dougwilson.svg" /></a>
+ <a target="_blank" href="https://github.com/michelelacorte/AndroidAppShortcuts"><img src="https://img.shields.io/badge/methods-186-e91e63.svg" /></a>
+  <a target="_blank" href="https://travis-ci.org/michelelacorte/AndroidAppShortcuts"><img src="https://travis-ci.org/michelelacorte/AndroidAppShortcuts.svg?branch=master" /></a>
+    <a target="_blank" href="https://www.uplabs.com/posts/androidshortcuts"><img src="https://img.shields.io/badge/MaterialUp-AndroidShortcuts-blue.svg?style=true" /></a>
+ <a target="_blank" href="https://android-arsenal.com/details/1/5098"><img src="https://img.shields.io/badge/Android%20Arsenal-Android%20App%20Shortcuts-brightgreen.svg?style=flat" /></a>
+  <a target="_blank" href="http://www.android-gems.com/lib/michelelacorte/AndroidAppShortcuts?lib_id=1507"><img src="http://www.android-gems.com/badge/michelelacorte/AndroidAppShortcuts.svg" /></a>
+ <a target="_blank" href="https://www.codacy.com/app/micky1995/AndroidShortcuts?utm_source=github.com&utm_medium=referral&utm_content=michelelacorte/AndroidShortcuts&utm_campaign=badger"><img src="https://api.codacy.com/project/badge/Grade/2a8eb532d98842f6966bc164a896419a" /></a>
+ <a target="_blank" href="https://twitter.com/LacorteMichele"><img src="https://img.shields.io/badge/Twitter-@LacorteMichele-blue.svg?style=flat" /></a>
+ <a target="_blank" href="https://android-arsenal.com/api?level=14"><img src="https://img.shields.io/badge/API-14%2B-yellow.svg?style=flat" /></a>
+ <a target="_blank" href="https://www.apache.org/licenses/LICENSE-2.0.html"><img src="https://img.shields.io/badge/license-Apache%202-4EB1BA.svg" /></a>
+</p>
 
-[![API](https://img.shields.io/badge/API-14%2B-yellow.svg?style=flat)](https://android-arsenal.com/api?level=14)
+<p align="center">
 
-[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
-
-
+___
 
 ##WHAT IS ANDROID SHORTCUTS?
 
-The shorctus have a features of Android 7.1 Nougat, and available only for the launcher that implement, in this library, you can implement in your launcher shortcuts starting from API 14!
-Whit new communication all developers will only implement shortcuts layout (this library), then it's up to developer to implement their own shortcuts, like Google!!!
+The Android App Shortcuts Library have features of Android 7.1 Nougat, you can implement in your launcher shortcuts starting from API 14!
+With new communication all developers will only implement shortcuts layout (this library), then it's up to developer to implement their own shortcuts, like Google!!!
+In version 1.4.0 library can get shortcuts from app which have API 25 and [Static or Dynamic shortcuts](https://developer.android.com/guide/topics/ui/shortcuts.html) implementation
 I have also implemented [Force Touch](https://github.com/michelelacorte/ForceTouch) and YOU CAN USE ON CUSTOM LAUNCHER WITH SHORTCUTS!!
 
 ##DONATIONS
@@ -38,16 +49,20 @@ This project needs you! If you would like to support this project's further deve
 
 Of course, you can also choose what you want to donate, all donations are awesome!! Follow this link [Donate](https://www.paypal.me/MicheleLacorte)!!
 
+If you want to contribute you may download [Donation App](https://play.google.com/store/apps/details?id=it.michelelacorte.githubdonation) from Google Play
+
 <img align="left" src="https://s23.postimg.org/m2d28wraj/ic_launcher.png">
-#v1.3.0 Preview (Coming Soon!)
+#v1.4.0 Preview (Coming Soon!)
+
+<h1 align="center"><img src="https://s28.postimg.org/dgi12bky5/preview14_Copia_framed_1.png"/></h1>
+
+##v1.3.0 Preview
 
 <h1 align="center"><img src="https://s28.postimg.org/9yysm1xgd/Screenshot_2017_01_20_12_45_03.png"/></h1>
 
 <h1 align="center"><img src="http://i.giphy.com/26xBzlNgGvOB8MvBK.gif"/></h1>
 
-##v1.2.0 Preview
-
-<h1 align="center"><img src="https://s30.postimg.org/oancibrz5/Screenshot_2017_01_17_18_17_54.png"/></h1>
+##v1.2.0 Preview [Click Here](https://s30.postimg.org/oancibrz5/Screenshot_2017_01_17_18_17_54.png)
 
 ##v1.1.0 Preview [Click Here](http://i.giphy.com/26gYBk8pQxudwwWQw.gif)
 
@@ -62,6 +77,13 @@ Of course, you can also choose what you want to donate, all donations are awesom
 <a href="https://play.google.com/store/apps/details?id=it.michelelacorte.exampleandroidshortcuts">
 <img alt="Get it on Google Play" src="https://s32.postimg.org/50h5qj4lx/google_play_badge.png" />
 </a>
+
+####If you want to help me please download Donation App!!
+
+<a href="https://play.google.com/store/apps/details?id=it.michelelacorte.githubdonation">
+<img alt="Get it on Google Play" src="https://s32.postimg.org/50h5qj4lx/google_play_badge.png" />
+</a>
+
 
 ####Or scan QR Code
 
@@ -84,7 +106,7 @@ allprojects {
 Than add this dependencies
 
 ```groovy
-   compile 'com.github.michelelacorte:AndroidAppShortcuts:1.2.0'
+   compile 'com.github.michelelacorte:AndroidAppShortcuts:1.3.0'
 ```
 ##DOCUMENTATION 
 
@@ -105,7 +127,25 @@ Android API 14+
 
 ##CHANGELOG
 
-**v1.3.0 (Coming Soon!)**
+**v1.4.0 (Coming Soon!)**
+* Fully support to API 25 App Shortcuts, now app can use [Google implementation method](https://developer.android.com/guide/topics/ui/shortcuts.html)!!!
+* New App version 1.4 with some fix, background changed to bring out the Shortcuts.
+* Fixed `onShortcutsOptionClickListener`, now remove view parent on click.
+* Update class `RemoteShortcuts`
+	* Added static method `ArrayList<Shortcuts> getRemoteShortcutsOnAPI25(Activity activity, String targetPackageName, int uid) throws Exception` this method get shortcuts defined in API 25, with [Google SDK](https://developer.android.com/guide/topics/ui/shortcuts.html).
+	* Update static void `saveRemoteShortcuts(Activity activity, ArrayList<Shortcuts> listOfShortcuts)` removed unecessary packageName string from method.
+* Update class `Shortcuts`
+	* Added constructor for API 25 `Shortcuts(Bitmap shortcutsImage, Bitmap shortcutsImageBadge, String shortcutsText, String targetClass, String targetPackage, int rank)`.
+	* Added getter (API 25) `Bitmap getShortcutsImageBadgeBitmap()`.
+	* Added getter (API 25) `int getRank()`.
+	* Increase `MAX_CHAR_SHORTCUTS` from 16 to 20.
+* Update class `Utils`
+	* Added method (API 25) `static Bitmap getRoundedBitmapForAPI25(Bitmap bitmap, Drawable packageImage)` for get launcher icon with badge and shadow.
+* Fixed some method issue.
+* Update `buildToolsVersion` and `dependencies`
+
+
+**v1.3.0**
 * New App version 1.3
 * Added dynamic colored of shortcuts icon!
 * Update icon in launcher when create shortcuts, Nougat style! See ![alt tag](https://s30.postimg.org/srwgx8koh/Screenshot_2017_01_20_12_45_03.png) 
@@ -259,3 +299,8 @@ limitations under the License.
 [Donate $50]: 		https://www.paypal.me/MicheleLacorte/50
 [Donate $100]: 		https://www.paypal.me/MicheleLacorte/100
 [Donate $2799]: 	https://www.paypal.me/MicheleLacorte/2799
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/michelelacorte/AndroidAppShortcuts/badge.svg?style=beer-square)](https://beerpay.io/michelelacorte/AndroidAppShortcuts)  [![Beerpay](https://beerpay.io/michelelacorte/AndroidAppShortcuts/make-wish.svg?style=flat-square)](https://beerpay.io/michelelacorte/AndroidAppShortcuts?focus=wish)

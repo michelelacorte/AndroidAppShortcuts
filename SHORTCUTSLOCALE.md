@@ -73,3 +73,13 @@ Than in MainActivity
             }
         });
 ```
+
+If you like new app package image use this method and pass package of activity clicked!
+Use it before `shortcutsCreation.createShortcuts()` method!
+
+```groovy
+//Get package image of clicked item
+Drawable packageImage = pkgAppsList.get(positionPointed).activityInfo.loadIcon(getPackageManager());
+//Set it with this method!
+shortcutsCreation.setPackageImage(packageImage);
+```
