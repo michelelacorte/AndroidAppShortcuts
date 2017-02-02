@@ -1,6 +1,7 @@
 package it.michelelacorte.androidshortcuts.util;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -23,6 +24,7 @@ import android.util.TypedValue;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import it.michelelacorte.androidshortcuts.R;
+import it.michelelacorte.androidshortcuts.RemoteShortcuts;
 
 /**
  * Created by Michele on 09/12/2016.
@@ -68,12 +70,12 @@ public class Utils {
      * @param packageName String
      * @throws ClassNotFoundException
      */
-    public static void createShortcutsOnLauncher(Activity activity, Bitmap shortcutsImage, String shortcutsText, String className, String packageName, Drawable packageImage) throws ClassNotFoundException {
+    public static void createShortcutsOnLauncher(Activity activity, Bitmap shortcutsImage, String shortcutsText, String className, String packageName, Drawable packageImage, Bitmap shortcutsImageBadge) throws ClassNotFoundException {
 
         int result = ContextCompat.checkSelfPermission(activity, Manifest.permission.INSTALL_SHORTCUT);
         if (result != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(activity, android.Manifest.permission.INSTALL_SHORTCUT)) {
-                Log.d(TAG, "Install Shortcuts permission allows us to create shortcuts on launcher. Please allow this permission in App Settings.");
+                Log.e(TAG, "Install Shortcuts permission allows us to create shortcuts on launcher. Please allow this permission in App Settings.");
             } else {
                 ActivityCompat.requestPermissions(activity, new String[]{android.Manifest.permission.INSTALL_SHORTCUT}, 111);
                 Log.d(TAG, "Install Shortcuts permission allows us to create shortcuts on launcher.");
@@ -89,8 +91,13 @@ public class Utils {
         Intent addIntent = new Intent();
         addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
         addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, shortcutsText);
-        Bitmap roundedBitmap = getRoundedBitmap(shortcutsImage, packageImage);
-        addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON, roundedBitmap);
+        if(shortcutsImageBadge != null && !RemoteShortcuts.USE_SHORTCUTS_FROM_API_25){
+            Bitmap roundedBitmap = getRoundedBitmapForAPI25(shortcutsImageBadge, packageImage);
+            addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON, roundedBitmap);
+        }else {
+            Bitmap roundedBitmap = getRoundedBitmap(shortcutsImage, packageImage);
+            addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON, roundedBitmap);
+        }
         addIntent.putExtra("duplicate", false);
         addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
         activity.getApplicationContext().sendBroadcast(addIntent);
@@ -119,6 +126,44 @@ public class Utils {
         //bm.recycle();
         return resizedBitmap;
     }
+
+    /**
+     * This method return image with badge from icon and package icon.
+     * @param bitmap Bitmap
+     * @param packageImage Drawable
+     * @return Bitmap
+     */
+    @TargetApi(25)
+    public static Bitmap getRoundedBitmapForAPI25(Bitmap bitmap, Drawable packageImage)
+    {
+        Bitmap packageIcon = null;
+        if(packageImage != null) {
+            packageIcon = convertDrawableToBitmap(packageImage);
+        }
+        Bitmap packageIconScaled = getResizedBitmap(packageIcon, bitmap.getWidth()/2, bitmap.getHeight()/2);
+
+        Bitmap result = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+        Canvas canvas = new Canvas(result);
+
+        final int color = 0xffF5F5F5;
+        final int colorShape = 0xffBDBDBD;
+        final Paint paint = new Paint();
+        final Paint paintShape = new Paint();
+
+        paint.setAntiAlias(true);
+        paintShape.setAntiAlias(true);
+
+        paint.setColor(color);
+        paintShape.setColor(colorShape);
+
+        canvas.drawARGB(0, 0, 0, 0);
+        paintShape.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OVER));
+        canvas.drawCircle(bitmap.getWidth()/2, bitmap.getHeight()/2+2, 45, paintShape);
+        canvas.drawBitmap(bitmap, 0f, 0f, paint);
+        canvas.drawBitmap(packageIconScaled, bitmap.getWidth()/2, bitmap.getHeight()/2, null);
+        return result;
+    }
+
 
 
     /**
@@ -191,8 +236,10 @@ public class Utils {
     public static Bitmap setColorOnBitmap(Bitmap bitmap, int color){
         Bitmap bm = bitmap.copy(Bitmap.Config.ARGB_8888, true);
         Paint paintColorDominant = new Paint();
-        ColorFilter filter = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
-        paintColorDominant.setColorFilter(filter);
+        if(!RemoteShortcuts.USE_SHORTCUTS_FROM_API_25) {
+            ColorFilter filter = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
+            paintColorDominant.setColorFilter(filter);
+        }
         Canvas canvasColorDominant = new Canvas(bm);
         canvasColorDominant.drawBitmap(bm, 0, 0, paintColorDominant);
         return bm;

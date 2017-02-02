@@ -5,13 +5,13 @@ group='com.github.michelelacorte'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.1'
+    buildToolsVersion '25.0.2'
 
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 6
-        versionName "1.3.0"
+        versionCode 7
+        versionName "1.4.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -30,8 +30,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:palette-v7:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:palette-v7:25.1.1'
     testCompile 'junit:junit:4.12'
     compile 'com.google.code.gson:gson:2.8.0'
 }

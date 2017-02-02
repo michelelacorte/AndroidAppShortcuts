@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         listOfShortcuts.add(new Shortcuts(R.drawable.ic_code_black_24dp, "Test Shortcuts", "it.michelelacorte.exampleandroidshortcuts.MainActivity", "it.michelelacorte.exampleandroidshortcuts"));
 
         //Call this for save shortcuts and make accessible from library
-        RemoteShortcuts.saveRemoteShortcuts(this, this.getPackageName(), listOfShortcuts);
+        RemoteShortcuts.saveRemoteShortcuts(this, listOfShortcuts);
 
         RelativeLayout activityParent = (RelativeLayout) findViewById(R.id.activity_main);
 
@@ -106,8 +107,23 @@ public class MainActivity extends AppCompatActivity {
             public void onLongPress(MotionEvent motionEvent) {
                 shortcutsCreation.clearAllLayout();
                 //Now create shortcuts!
-                int positionPointed = ((GridView) gridView).pointToPosition((int) motionEvent.getX(),  (int) motionEvent.getY());
+
+                int positionPointed = ((GridView) gridView).pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY());
                 try {
+                    /*
+                    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+                        ArrayList<Shortcuts> shortcutsArrayList = new ArrayList<>();
+                        shortcutsArrayList = RemoteShortcuts.getRemoteShortcutsOnAPI25(MainActivity.this, ExampleArrayAdapter.pkgAppsList.get(positionPointed).activityInfo.packageName,
+                                ExampleArrayAdapter.pkgAppsList.get(positionPointed).activityInfo.applicationInfo.uid);
+                        Drawable packageImage = ExampleArrayAdapter.pkgAppsList.get(positionPointed).activityInfo.loadIcon(getPackageManager());
+                        shortcutsCreation.setPackageImage(packageImage);
+                        shortcutsCreation.createShortcuts((int) motionEvent.getX(), (int) motionEvent.getY(), 96, StyleOption.LINE_LAYOUT, shortcutsArrayList);
+                    }else{
+                        Toast.makeText(MainActivity.this, "Your SDK version is " +
+                                " " + android.os.Build.VERSION.SDK_INT + " this invokation requires " + Build.VERSION_CODES.N_MR1, Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                    */
                     Drawable packageImage = ExampleArrayAdapter.pkgAppsList.get(positionPointed).activityInfo.loadIcon(getPackageManager());
                     shortcutsCreation.setPackageImage(packageImage);
                     shortcutsCreation.createShortcuts((int) motionEvent.getX(), (int) motionEvent.getY(), 96, StyleOption.LINE_LAYOUT,
@@ -120,12 +136,12 @@ public class MainActivity extends AppCompatActivity {
                             }),
                             new Shortcuts(R.drawable.ic_done_black_24dp, "Nougat!", "it.michelelacorte.exampleandroidshortcuts.MainActivity", "it.michelelacorte.exampleandroidshortcuts"),
                             new Shortcuts(R.drawable.ic_code_black_24dp, "App Shortcuts!", "it.michelelacorte.exampleandroidshortcuts.MainActivity", "it.michelelacorte.exampleandroidshortcuts"));
-                }catch(Exception e) {
+                } catch (Exception e) {
                     Toast.makeText(MainActivity.this, "Position Incorrect!", Toast.LENGTH_SHORT)
                             .show();
                 }
-/*
 
+/*
                 ArrayList<Shortcuts> listOfShortcuts = new ArrayList<>();
                 int positionPointed = ((GridView) gridView).pointToPosition((int) motionEvent.getX(),  (int) motionEvent.getY());
                 try {
@@ -150,8 +166,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Position Incorrect!", Toast.LENGTH_SHORT)
                             .show();
                 }
-                */
-
+*/
             }
 
             @Override
@@ -167,7 +182,10 @@ public class MainActivity extends AppCompatActivity {
                 return gestureDetector.onTouchEvent(motionEvent);
             }
         });
+
+        donationAlertDialog();
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -209,6 +227,23 @@ public class MainActivity extends AppCompatActivity {
         ((TextView)builder.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
         ((TextView)builder.findViewById(android.R.id.message)).setGravity(Gravity.CENTER_VERTICAL);
         builder.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+    }
+
+    private void donationAlertDialog(){
+        AlertDialog builder =
+                new AlertDialog.Builder(this, R.style.AlertDialogCustom).setTitle(getResources().getString(R.string.app_name))
+                        .setCancelable(false)
+                        .setIcon(R.mipmap.ic_launcher)
+                        .setMessage(R.string.donation_dialog_message)
+                        .setPositiveButton(getResources().getString(R.string.disclaimer_dialog_ok), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        }).create();
+        builder.show();
+        ((TextView)builder.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+        ((TextView)builder.findViewById(android.R.id.message)).setGravity(Gravity.CENTER_VERTICAL);
+       // builder.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
     }
 }
 

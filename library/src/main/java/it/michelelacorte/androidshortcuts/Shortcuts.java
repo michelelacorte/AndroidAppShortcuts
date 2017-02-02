@@ -1,6 +1,7 @@
 package it.michelelacorte.androidshortcuts;
 
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -15,7 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.Serializable;
-
 import it.michelelacorte.androidshortcuts.util.StyleOption;
 import it.michelelacorte.androidshortcuts.util.Utils;
 
@@ -30,13 +30,15 @@ public class Shortcuts implements Serializable{
     private String shortcutsText;
     private int shortcutsImage;
     private Bitmap shortcutsImageBitmap;
+    private Bitmap shortcutsImageBadgeBitmap;
+    private int rank;
     private String targetClass;
     private String targetPackage;
 
     private View.OnClickListener onShortcutsClickListener;
     private View.OnClickListener onShortcutsOptionClickListener;
 
-    private final int MAX_CHAR_SHORTCUTS = 16;
+    public static final int MAX_CHAR_SHORTCUTS = 20;
 
     /**
      * Public constructor for create custom shortcuts
@@ -48,7 +50,7 @@ public class Shortcuts implements Serializable{
         this.shortcutsImage = shortcutsImage;
         if(shortcutsText.toCharArray().length > MAX_CHAR_SHORTCUTS){
             this.shortcutsText = "NULL";
-            Log.e(TAG, "Impossible to have string > 16 chars, setted to NULL string!");
+            Log.e(TAG, "Impossible to have string > " + MAX_CHAR_SHORTCUTS + " chars, setted to NULL string!");
         }else{
             this.shortcutsText = shortcutsText;
         }
@@ -69,7 +71,7 @@ public class Shortcuts implements Serializable{
         this.shortcutsImage = shortcutsImage;
         if(shortcutsText.toCharArray().length > MAX_CHAR_SHORTCUTS){
             this.shortcutsText = "NULL";
-            Log.e(TAG, "Impossible to have string > 16 chars, setted to NULL string!");
+            Log.e(TAG, "Impossible to have string > " + MAX_CHAR_SHORTCUTS + " chars, setted to NULL string!");
         }else {
             this.shortcutsText = shortcutsText;
         }
@@ -86,7 +88,7 @@ public class Shortcuts implements Serializable{
         this.shortcutsImage = 0;
         if(shortcutsText.toCharArray().length > MAX_CHAR_SHORTCUTS){
             this.shortcutsText = "NULL";
-            Log.e(TAG, "Impossible to have string > 16 chars, setted to NULL string!");
+            Log.e(TAG, "Impossible to have string > " + MAX_CHAR_SHORTCUTS + " chars, setted to NULL string!");
         }else {
             this.shortcutsText = shortcutsText;
         }
@@ -103,7 +105,7 @@ public class Shortcuts implements Serializable{
         this.shortcutsImage = shortcutsImage;
         if(shortcutsText.toCharArray().length > MAX_CHAR_SHORTCUTS){
             this.shortcutsText = "NULL";
-            Log.e(TAG, "Impossible to have string > 16 chars, setted to NULL string!");
+            Log.e(TAG, "Impossible to have string > " + MAX_CHAR_SHORTCUTS + " chars, setted to NULL string!");
         }else{
             this.shortcutsText = shortcutsText;
         }
@@ -124,7 +126,23 @@ public class Shortcuts implements Serializable{
         this.shortcutsImage = 0;
         if(shortcutsText.toCharArray().length > MAX_CHAR_SHORTCUTS){
             this.shortcutsText = "NULL";
-            Log.e(TAG, "Impossible to have string > 16 chars, setted to NULL string!");
+            Log.e(TAG, "Impossible to have string > " + MAX_CHAR_SHORTCUTS + " chars, setted to NULL string!");
+        }else{
+            this.shortcutsText = shortcutsText;
+        }
+        this.targetClass = targetClass;
+        this.targetPackage = targetPackage;
+    }
+
+    @TargetApi(25)
+    public Shortcuts(Bitmap shortcutsImage, Bitmap shortcutsImageBadge, String shortcutsText, String targetClass, String targetPackage, int rank){
+        this.shortcutsImageBitmap = shortcutsImage;
+        this.shortcutsImageBadgeBitmap = shortcutsImageBadge;
+        this.rank = rank;
+        this.shortcutsImage = 0;
+        if(shortcutsText.toCharArray().length > MAX_CHAR_SHORTCUTS){
+            this.shortcutsText = "NULL";
+            Log.e(TAG, "Impossible to have string > " + MAX_CHAR_SHORTCUTS + " chars, setted to NULL string!");
         }else{
             this.shortcutsText = shortcutsText;
         }
@@ -144,7 +162,7 @@ public class Shortcuts implements Serializable{
         this.shortcutsImage = shortcutsImage;
         if(shortcutsText.toCharArray().length > MAX_CHAR_SHORTCUTS){
             this.shortcutsText = "NULL";
-            Log.e(TAG, "Impossible to have string > 16 chars, setted to NULL string!");
+            Log.e(TAG, "Impossible to have string > " + MAX_CHAR_SHORTCUTS + " chars, setted to NULL string!");
         }else{
             this.shortcutsText = shortcutsText;
         }
@@ -165,7 +183,7 @@ public class Shortcuts implements Serializable{
      * Public method to initializate shortcuts, do not use this!
      * @param layout View
      */
-    public void init(View layout, int optionLayoutStyle, final Activity activity, final Drawable packageImage){
+    public void init(View layout, int optionLayoutStyle, final Activity activity, final Drawable packageImage, final ShortcutsCreation shortcutsCreation){
         ImageView mShortcutsImage = (ImageView) layout.findViewById(R.id.shortcut_image);
         TextView mShortcutsText = (TextView) layout.findViewById(R.id.shortcut_text);
         RelativeLayout mShortcutsParent = (RelativeLayout) layout.findViewById(R.id.shortcut_parent);
@@ -203,8 +221,12 @@ public class Shortcuts implements Serializable{
             if(packageImage != null) {
                 int color = Utils.getDominantColor(Utils.convertDrawableToBitmap(packageImage));
                 if (color != 0) {
-                    Bitmap coloredBitmap = Utils.setColorOnBitmap(shortcutsImageBitmap, color);
-                    mShortcutsImage.setImageBitmap(coloredBitmap);
+                    if(RemoteShortcuts.USE_SHORTCUTS_FROM_API_25){
+                        mShortcutsImage.setImageBitmap(shortcutsImageBitmap);
+                    }else{
+                        Bitmap coloredBitmap = Utils.setColorOnBitmap(shortcutsImageBitmap, color);
+                        mShortcutsImage.setImageBitmap(coloredBitmap);
+                    }
                 } else {
                     mShortcutsImage.setImageBitmap(shortcutsImageBitmap);
                 }
@@ -221,12 +243,18 @@ public class Shortcuts implements Serializable{
                 @Override
                 public void onClick(View view) {
                     try {
-                        if(shortcutsImageBitmap != null) {
-                            Utils.createShortcutsOnLauncher(activity, shortcutsImageBitmap, shortcutsText, targetClass, targetPackage, packageImage);
-                        }else{
+                        if(RemoteShortcuts.USE_SHORTCUTS_FROM_API_25){
+                            shortcutsCreation.clearAllLayout();
+                            Utils.createShortcutsOnLauncher(activity, shortcutsImageBitmap, shortcutsText, targetClass, targetPackage, packageImage, shortcutsImageBadgeBitmap);
+                        }
+                        if(shortcutsImageBitmap != null && !RemoteShortcuts.USE_SHORTCUTS_FROM_API_25) {
+                            shortcutsCreation.clearAllLayout();
+                            Utils.createShortcutsOnLauncher(activity, shortcutsImageBitmap, shortcutsText, targetClass, targetPackage, packageImage, null);
+                        }else if (!RemoteShortcuts.USE_SHORTCUTS_FROM_API_25){
+                            shortcutsCreation.clearAllLayout();
                             Drawable drawable = ContextCompat.getDrawable(activity.getApplicationContext(), shortcutsImage);
                             Bitmap toBitmap = Utils.convertDrawableToBitmap(drawable);
-                            Utils.createShortcutsOnLauncher(activity, toBitmap, shortcutsText, targetClass, targetPackage, packageImage);
+                            Utils.createShortcutsOnLauncher(activity, toBitmap, shortcutsText, targetClass, targetPackage, packageImage, null);
                         }
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
@@ -309,4 +337,22 @@ public class Shortcuts implements Serializable{
         return onShortcutsOptionClickListener;
     }
 
+
+    /**
+     * Get rounded image for icon in launcher
+     * @return Bitmap
+     */
+    @TargetApi(25)
+    public Bitmap getShortcutsImageBadgeBitmap() {
+        return shortcutsImageBadgeBitmap;
+    }
+
+    /**
+     * Get rank of shortcuts
+     * @return int
+     */
+    @TargetApi(25)
+    public int getRank() {
+        return rank;
+    }
 }

@@ -170,7 +170,7 @@ public class ShortcutsCreation {
 
             for (int i = 0; i < shortcuts.size(); i++) {
                 layout[i] = (RelativeLayout) inflater.inflate(R.layout.shortcuts, null, false);
-                shortcuts.get(i).init(layout[i], optionLayoutStyle, activity, packageImage);
+                shortcuts.get(i).init(layout[i], optionLayoutStyle, activity, packageImage, this);
                 if ((dim + DIM_WIDTH) >= maxXScreen) {
                     //Destra
                     layout[i].setX(dim - DIM_WIDTH + (mIconWidth) - mIconWidth / 4);
@@ -405,7 +405,7 @@ public class ShortcutsCreation {
 
             for (int i = 0; i < shortcuts.length; i++) {
                 layout[i] = (RelativeLayout) inflater.inflate(R.layout.shortcuts, null, false);
-                shortcuts[i].init(layout[i], optionLayoutStyle, activity, packageImage);
+                shortcuts[i].init(layout[i], optionLayoutStyle, activity, packageImage, this);
                 if ((dim + DIM_WIDTH) >= maxXScreen) {
                     //Destra
                     layout[i].setX(dim - DIM_WIDTH + (mIconWidth) - mIconWidth / 4);
@@ -602,7 +602,7 @@ public class ShortcutsCreation {
         if(layout != null) {
             for (int i = 0; i < layout.length; i++) {
                 if (layout[i] != null && ((ViewGroup) layout[i].getParent()) != null) {
-                        ((ViewGroup) layout[i].getParent()).removeView(layout[i]);
+                    ((ViewGroup) layout[i].getParent()).removeView(layout[i]);
                 }
             }
             Log.d(TAG, "Layout clear!");
