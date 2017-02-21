@@ -130,6 +130,8 @@ Android API 14+
 
 **v2.0.0 (Coming Soon!)**
 * Starting implementing App Shortcuts on Launcher3 stock launcher!!!
+* Refactor code with Builder pattern, more clear!!
+* Added `OnLongClickListener` on shortcuts to create shortcuts icon on launcher.
 
 **v1.4.0**
 * Fully support to API 25 App Shortcuts, now app can use [Google implementation method](https://developer.android.com/guide/topics/ui/shortcuts.html)!!!
