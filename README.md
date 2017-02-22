@@ -52,15 +52,16 @@ Of course, you can also choose what you want to donate, all donations are awesom
 If you want to contribute you may download [Donation App](https://play.google.com/store/apps/details?id=it.michelelacorte.githubdonation) from Google Play
 
 <img align="left" src="https://s23.postimg.org/m2d28wraj/ic_launcher.png">
-#v1.4.0 Preview (Coming Soon!)
+#v2.0.0 Preview (Coming Soon!)
+
+<h1 align="center"><img src="http://i.giphy.com/l44QyTuiV1bj2nXjO.gif"/></h1>
+
+##v1.4.0 Preview
 
 <h1 align="center"><img src="https://s28.postimg.org/dgi12bky5/preview14_Copia_framed_1.png"/></h1>
 
-##v1.3.0 Preview
-
-<h1 align="center"><img src="https://s28.postimg.org/9yysm1xgd/Screenshot_2017_01_20_12_45_03.png"/></h1>
-
-<h1 align="center"><img src="http://i.giphy.com/26xBzlNgGvOB8MvBK.gif"/></h1>
+##v1.3.0 Preview [Click Here](https://s28.postimg.org/9yysm1xgd/Screenshot_2017_01_20_12_45_03.png)
+## [Click Here](http://i.giphy.com/26xBzlNgGvOB8MvBK.gif)
 
 ##v1.2.0 Preview [Click Here](https://s30.postimg.org/oancibrz5/Screenshot_2017_01_17_18_17_54.png)
 
@@ -106,7 +107,7 @@ allprojects {
 Than add this dependencies
 
 ```groovy
-   compile 'com.github.michelelacorte:AndroidAppShortcuts:1.3.0'
+   compile 'com.github.michelelacorte:AndroidAppShortcuts:1.4.0'
 ```
 ##DOCUMENTATION 
 
@@ -127,7 +128,23 @@ Android API 14+
 
 ##CHANGELOG
 
-**v1.4.0 (Coming Soon!)**
+**v2.0.0 (Coming Soon!)**
+* New App version 2.0 with library and dependencies update and bug fix.
+* Fully support to Launcher3 (dock and folder shortcuts!) with circluar icon, now support device screen resolution:
+    * 1440x2560 (Portrait).
+    * 1080x1920 (Portrait).
+    * 720x1280 (Portrait).
+* Improved layout of 720x1280 resolution.
+* Added class `ShortcutsBuilder` for create shortcuts with builder constructor.
+* Update class `Utils`
+	* Added  `static Bitmap getRoundedBitmapForLauncher3` to get circular icon (shortcuts on launcher)
+	* Added  ` static int getScreenXDimension` to get screen X.
+* Update class `StyleOption`
+	* Added `NONE` option for delete menù at right of shortcuts.
+* Added `OnLongClickListener` on shortcuts to create shortcuts icon on launcher.
+* General bug fix and improvement.
+
+**v1.4.0**
 * Fully support to API 25 App Shortcuts, now app can use [Google implementation method](https://developer.android.com/guide/topics/ui/shortcuts.html)!!!
 * New App version 1.4 with some fix, background changed to bring out the Shortcuts.
 * Fixed `onShortcutsOptionClickListener`, now remove view parent on click.
