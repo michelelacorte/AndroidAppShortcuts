@@ -54,7 +54,7 @@ If you want to contribute you may download [Donation App](https://play.google.co
 <img align="left" src="https://s23.postimg.org/m2d28wraj/ic_launcher.png">
 #v2.0.0 Preview (Coming Soon!)
 
-<h1 align="center"><img src="https://s29.postimg.org/i0h04a11j/Screenshot_2017_02_05_19_42_17_framed.png"/></h1>
+<h1 align="center"><img src="http://i.giphy.com/l44QyTuiV1bj2nXjO.gif"/></h1>
 
 ##v1.4.0 Preview
 
