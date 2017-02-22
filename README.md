@@ -130,7 +130,7 @@ Android API 14+
 
 **v2.0.0 (Coming Soon!)**
 * New App version 2.0 with library and dependencies update and bug fix.
-* Fully support to Launcher3 with circluar icon, now support device screen resolution:
+* Fully support to Launcher3 (dock and folder shortcuts!) with circluar icon, now support device screen resolution:
     * 1440x2560 (Portrait).
     * 1080x1920 (Portrait).
     * 720x1280 (Portrait).
