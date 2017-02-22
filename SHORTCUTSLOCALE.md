@@ -1,85 +1,43 @@
 Now let's start to create Shortcuts!
 
-```groovy
-    //Layout for shortcuts
-    private AdapterView gridView;
-    private RelativeLayout activityParent;
-```
-
-Than in MainActivity
-
-```
-        activityParent = (RelativeLayout) findViewById(R.id.activity_main);
-        gridView=(GridView) findViewById(R.id.gridView);
-        gridView.setAdapter(new MyArrayAdapter(this, R.layout.app_grid_item));
-        
-        //Create Shortcuts
-        final ShortcutsCreation shortcutsCreation = new ShortcutsCreation(MainActivity.this, activityParent, gridView);
-        
-        //Create gesture detector for onLongPress
-        final GestureDetector gestureDetector = new GestureDetector(getApplicationContext(), new GestureDetector.OnGestureListener() {
-            @Override
-            public boolean onDown(MotionEvent motionEvent) {
-                shortcutsCreation.clearAllLayout();
-                return false;
-            }
-
-            @Override
-            public void onShowPress(MotionEvent motionEvent) {
-                shortcutsCreation.clearAllLayout();
-            }
-
-            @Override
-            public boolean onSingleTapUp(MotionEvent motionEvent) {
-                shortcutsCreation.clearAllLayout();
-                return false;
-            }
-
-            @Override
-            public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-                shortcutsCreation.clearAllLayout();
-                return false;
-            }
-
-            @Override
-            public void onLongPress(MotionEvent motionEvent) {
-            
-                //Make sure to clear layout before create new
-                shortcutsCreation.clearAllLayout();
-                
-                //Now create shortcuts!!
-                shortcutsCreation.createShortcuts((int)motionEvent.getX(), (int)motionEvent.getY(), 96, 0
-                        new Shortcuts(R.mipmap.ic_launcher, "Shortcuts", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Toast.makeText(getApplicationContext(), "Hello Shortcuts!!", Toast.LENGTH_LONG).show();
-                            }
-                        }),
-                        new Shortcuts(R.mipmap.ic_launcher, "Hello!"));
-            }
-
-            @Override
-            public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-                shortcutsCreation.clearAllLayout();
-                return false;
-            }
-        });
-
-        // Set custom touch listener
-        gridView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return gestureDetector.onTouchEvent(motionEvent);
-            }
-        });
-```
-
-If you like new app package image use this method and pass package of activity clicked!
-Use it before `shortcutsCreation.createShortcuts()` method!
+This is example provided by example app
 
 ```groovy
-//Get package image of clicked item
-Drawable packageImage = pkgAppsList.get(positionPointed).activityInfo.loadIcon(getPackageManager());
-//Set it with this method!
-shortcutsCreation.setPackageImage(packageImage);
+                    ShortcutsBuilder builder = new ShortcutsBuilder.Builder(MainActivity.this, activityParent)
+                            .normalShortcuts(gridView, (int) motionEvent.getX(), (int) motionEvent.getY(), 96)
+                            .setOptionLayoutStyle(StyleOption.LINE_LAYOUT)
+                            .setPackageImage(packageImage)
+                            .setShortcutsArray(new Shortcuts(R.drawable.ic_add_black_24dp, "Shortcuts", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Toast.makeText(getApplicationContext(), "Hello Shortcuts!!", Toast.LENGTH_LONG).show();
+                                            if(shortcutsCreation != null)
+                                                shortcutsCreation.clearAllLayout();
+                                        }
+                                    }),
+                                    new Shortcuts(R.drawable.ic_done_black_24dp, "Nougat!", "it.michelelacorte.exampleandroidshortcuts.MainActivity", "it.michelelacorte.exampleandroidshortcuts"),
+                                    new Shortcuts(R.drawable.ic_code_black_24dp, "App Shortcuts!", "it.michelelacorte.exampleandroidshortcuts.MainActivity", "it.michelelacorte.exampleandroidshortcuts"))
+                            .build();
+
+                     ShortcutsCreation shortcutsCreation = new ShortcutsCreation(builder);
+
+                    shortcutsCreation.init();
 ```
+
+Now let's start to explain it:
+
+```groovy
+                    
+                    ShortcutsBuilder builder = new ShortcutsBuilder.Builder(this, activityParent) //first params Activity, second root layout of activity
+                            .normalShortcuts(gridView, (int) motionEvent.getX(), (int) motionEvent.getY(), 96) //adapter view or gridview, X and Y position of click, and row height.
+                            .setOptionLayoutStyle(StyleOption.LINE_LAYOUT) //layout style for right menù
+                            .setPackageImage(packageImage) //optional package image
+                            .setShortcutsArray() //set shortcuts array
+                            //.setShortcutsList() // or list
+                            .build(); //last call build.
+
+                    ShortcutsCreation shortcutsCreation = new ShortcutsCreation(builder); //create class for layout shortcuts
+
+                    shortcutsCreation.init(); //layout the shortcuts!
+```
+
