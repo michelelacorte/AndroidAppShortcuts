@@ -52,7 +52,7 @@ Of course, you can also choose what you want to donate, all donations are awesom
 If you want to contribute you may download [Donation App](https://play.google.com/store/apps/details?id=it.michelelacorte.githubdonation) from Google Play
 
 <img align="left" src="https://s23.postimg.org/m2d28wraj/ic_launcher.png">
-#v2.0.0 Preview (Coming Soon!)
+#v2.0.0 Preview
 
 <h1 align="center"><img src="http://i.giphy.com/l44QyTuiV1bj2nXjO.gif"/></h1>
 
@@ -107,7 +107,7 @@ allprojects {
 Than add this dependencies
 
 ```groovy
-   compile 'com.github.michelelacorte:AndroidAppShortcuts:1.4.0'
+   compile 'com.github.michelelacorte:AndroidAppShortcuts:2.0.0'
 ```
 ##DOCUMENTATION 
 
@@ -128,7 +128,7 @@ Android API 14+
 
 ##CHANGELOG
 
-**v2.0.0 (Coming Soon!)**
+**v2.0.0**
 * New App version 2.0 with library and dependencies update and bug fix.
 * Fully support to Launcher3 (dock and folder shortcuts!) with circluar icon, now support device screen resolution:
     * 1440x2560 (Portrait).
