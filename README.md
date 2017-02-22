@@ -129,9 +129,20 @@ Android API 14+
 ##CHANGELOG
 
 **v2.0.0 (Coming Soon!)**
-* Starting implementing App Shortcuts on Launcher3 stock launcher!!!
-* Refactor code with Builder pattern, more clear!!
+* New App version 2.0 with library and dependencies update and bug fix.
+* Fully support to Launcher3 with circluar icon, now support device screen resolution:
+    * 1440x2560 (Portrait).
+    * 1080x1920 (Portrait).
+    * 720x1280 (Portrait).
+* Improved layout of 720x1280 resolution.
+* Added class `ShortcutsBuilder` for create shortcuts with builder constructor.
+* Update class `Utils`
+	* Added  `static Bitmap getRoundedBitmapForLauncher3` to get circular icon (shortcuts on launcher)
+	* Added  ` static int getScreenXDimension` to get screen X.
+* Update class `StyleOption`
+	* Added `NONE` option for delete menù at right of shortcuts.
 * Added `OnLongClickListener` on shortcuts to create shortcuts icon on launcher.
+* General bug fix and improvement.
 
 **v1.4.0**
 * Fully support to API 25 App Shortcuts, now app can use [Google implementation method](https://developer.android.com/guide/topics/ui/shortcuts.html)!!!
