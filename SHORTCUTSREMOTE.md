@@ -27,22 +27,21 @@
                 //Get shortcuts for this package, again, 1 line!
                 listOfShortcuts = RemoteShortcuts.getRemoteShortcuts(MainActivity.this, packageName);
 
+                ShortcutsBuilder builder = new ShortcutsBuilder.Builder(MainActivity.this, activityParent)
+                         .normalShortcuts(gridView, (int) motionEvent.getX(), (int) motionEvent.getY(), 96)
+                         .setOptionLayoutStyle(StyleOption.LINE_LAYOUT)
+                         .setPackageImage(packageImage)
+                         .setShortcutsList(listOfShortcuts)
+                         .build();
+                         
+                shortcutsCreation = new ShortcutsCreation(builder);
+
                 //If shortcuts are defined, show it!
                 if(listOfShortcuts != null && listOfShortcuts.size() > 0) {
-                        shortcutsCreation.createShortcuts((int) motionEvent.getX(), (int) motionEvent.getY(), 96, 0, listOfShortcuts);
+                    shortcutsCreation.init();
                 }else{
                     Toast.makeText(MainActivity.this, "App Shortcuts not found for this package!", Toast.LENGTH_SHORT)
                             .show();
                 }
-```
-
-If you like new app package image use this method and pass package of activity clicked!
-Use it before `shortcutsCreation.createShortcuts()` method!
-
-```groovy
-//Get package image of clicked item
-Drawable packageImage = pkgAppsList.get(positionPointed).activityInfo.loadIcon(getPackageManager());
-//Set it with this method!
-shortcutsCreation.setPackageImage(packageImage);
 ```
 
