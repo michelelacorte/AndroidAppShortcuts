@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.Serializable;
+
 import it.michelelacorte.androidshortcuts.util.StyleOption;
 import it.michelelacorte.androidshortcuts.util.Utils;
 
@@ -24,7 +26,7 @@ import it.michelelacorte.androidshortcuts.util.Utils;
  */
 
 public class Shortcuts implements Serializable{
-    private final String TAG = "Shorctus";
+    private final String TAG = "Shortcuts";
     private static final long serialVersionUID = -29238982928391L;
 
     private String shortcutsText;
@@ -135,6 +137,7 @@ public class Shortcuts implements Serializable{
     }
 
     @TargetApi(25)
+    @RequiresApi(25)
     public Shortcuts(Bitmap shortcutsImage, Bitmap shortcutsImageBadge, String shortcutsText, String targetClass, String targetPackage, int rank){
         this.shortcutsImageBitmap = shortcutsImage;
         this.shortcutsImageBadgeBitmap = shortcutsImageBadge;
@@ -192,6 +195,29 @@ public class Shortcuts implements Serializable{
         if(onShortcutsClickListener != null)
             mShortcutsParent.setOnClickListener(onShortcutsClickListener);
 
+        mShortcutsParent.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                try {
+                    if(RemoteShortcuts.USE_SHORTCUTS_FROM_API_25){
+                        shortcutsCreation.clearAllLayout();
+                        Utils.createShortcutsOnLauncher(activity, shortcutsImageBitmap, shortcutsText, targetClass, targetPackage, packageImage, shortcutsImageBadgeBitmap);
+                    } else if(shortcutsImageBitmap != null && !RemoteShortcuts.USE_SHORTCUTS_FROM_API_25) {
+                        shortcutsCreation.clearAllLayout();
+                        Utils.createShortcutsOnLauncher(activity, shortcutsImageBitmap, shortcutsText, targetClass, targetPackage, packageImage, null);
+                    }else if (!RemoteShortcuts.USE_SHORTCUTS_FROM_API_25){
+                        shortcutsCreation.clearAllLayout();
+                        Drawable drawable = ContextCompat.getDrawable(activity.getApplicationContext(), shortcutsImage);
+                        Bitmap toBitmap = Utils.convertDrawableToBitmap(drawable);
+                        Utils.createShortcutsOnLauncher(activity, toBitmap, shortcutsText, targetClass, targetPackage, packageImage, null);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return true;
+            }
+        });
+
         if(targetPackage != null && targetClass != null) {
                 mShortcutsParent.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -221,7 +247,7 @@ public class Shortcuts implements Serializable{
             if(packageImage != null) {
                 int color = Utils.getDominantColor(Utils.convertDrawableToBitmap(packageImage));
                 if (color != 0) {
-                    if(RemoteShortcuts.USE_SHORTCUTS_FROM_API_25){
+                    if(RemoteShortcuts.USE_SHORTCUTS_FROM_API_25 || ShortcutsCreation.USE_SHORTCUTS_FOR_LAUNCHER_3){
                         mShortcutsImage.setImageBitmap(shortcutsImageBitmap);
                     }else{
                         Bitmap coloredBitmap = Utils.setColorOnBitmap(shortcutsImageBitmap, color);
@@ -263,21 +289,12 @@ public class Shortcuts implements Serializable{
             });
         }
 
-        switch (optionLayoutStyle){
-            case StyleOption.LINE_LAYOUT:
-                    mShortcutsOptions.setBackgroundResource(R.drawable.shortcuts_options);
-                break;
-            case StyleOption.CIRCLE_LAYOUT:
-                    mShortcutsOptions.setBackgroundResource(R.drawable.shortcuts_options_2);
-                break;
-            case StyleOption.CIRCLE_LAYOUT_ALTERNATIVE:
-                mShortcutsOptions.setBackgroundResource(R.drawable.shortcuts_options_3);
-                break;
-            default:
-                    mShortcutsOptions.setBackgroundResource(R.drawable.shortcuts_options);
-                Log.d(TAG, "Option invalid, restore default!");
-                break;
+        if(StyleOption.getStyleFromInt(optionLayoutStyle) == -1){
+            mShortcutsOptions.setVisibility(View.INVISIBLE);
+        }else {
+            mShortcutsOptions.setBackgroundResource(StyleOption.getStyleFromInt(optionLayoutStyle));
         }
+
         Log.d(TAG, "Init completed!");
     }
 
@@ -343,6 +360,7 @@ public class Shortcuts implements Serializable{
      * @return Bitmap
      */
     @TargetApi(25)
+    @RequiresApi(25)
     public Bitmap getShortcutsImageBadgeBitmap() {
         return shortcutsImageBadgeBitmap;
     }
@@ -352,6 +370,7 @@ public class Shortcuts implements Serializable{
      * @return int
      */
     @TargetApi(25)
+    @RequiresApi(25)
     public int getRank() {
         return rank;
     }

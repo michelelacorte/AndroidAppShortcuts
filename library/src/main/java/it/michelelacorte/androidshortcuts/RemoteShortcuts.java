@@ -13,10 +13,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.os.UserHandle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
+
 import java.io.ByteArrayOutputStream;
 import java.io.EOFException;
 import java.io.File;
@@ -151,6 +153,7 @@ public class RemoteShortcuts {
      * @throws Exception
      */
     @TargetApi(25)
+    @RequiresApi(25)
     public static ArrayList<Shortcuts> getRemoteShortcutsOnAPI25(Activity activity, String targetPackageName, int uid) throws Exception {
         LauncherApps launcherApps = (LauncherApps) activity.getApplicationContext().getSystemService(Context.LAUNCHER_APPS_SERVICE);
         if (!launcherApps.hasShortcutHostPermission()) {
@@ -220,9 +223,7 @@ public class RemoteShortcuts {
      */
     private static void checkPermission(Activity activity) {
         int result = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (result == PackageManager.PERMISSION_GRANTED) {
-            return;
-        } else {
+        if (result != PackageManager.PERMISSION_GRANTED) {
             requestPermission(activity);
         }
     }
